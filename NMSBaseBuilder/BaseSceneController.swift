@@ -13,6 +13,11 @@ import simd
 @MainActor
 @Observable
 final class BaseSceneController {
+    
+    enum PositionUpdateError: Error {
+        case invalidPosition
+        case invalidPartIndex
+    }
 
     let scene = SCNScene()
     
@@ -43,6 +48,18 @@ final class BaseSceneController {
         setupCamera()
         setupLighting()
         loadLampPost()
+
+        do {
+            try updatePartPosition(
+                at: 5,
+                position: [3, 2.9936051, 0]
+            )
+
+            print("Updated part position successfully")
+            print("New position: \(project?.parts[5].position ?? [])")
+        } catch {
+            print("Failed to update position: \(error)")
+        }
     }
 
     private func setupCamera() {
@@ -167,5 +184,26 @@ final class BaseSceneController {
         }
 
         return project.parts[index]
+    }
+    
+    func updatePartPosition(
+        at index: Int,
+        position: [Float]
+    ) throws {
+        guard position.count == 3 else {
+            throw PositionUpdateError.invalidPosition
+        }
+        
+        guard var project, project.parts.indices.contains(index) else {
+            throw PositionUpdateError.invalidPartIndex
+        }
+        
+        var part = project.parts[index]
+        
+        part.position = position
+        
+        project.parts[index] = part
+        
+        self.project = project
     }
 }
