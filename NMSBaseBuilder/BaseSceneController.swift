@@ -256,4 +256,46 @@ final class BaseSceneController {
 
         print("Loaded \(newProject.parts.count) NMS parts")
     }
+    
+    func updatePartRotation(
+        at index: Int,
+        angles: NMSEulerConverter.EulerAngles
+    ) throws {
+
+        guard var project,
+              project.parts.indices.contains(index) else {
+            throw PositionUpdateError.invalidPartIndex
+        }
+
+        guard let node = partNodes[index] else {
+            throw PositionUpdateError.missingSceneNode
+        }
+
+        // Retrieve the component we're modifying.
+        var part = project.parts[index]
+
+        // Extract its existing NMS transform.
+        let originalTransform = try part.transform
+
+        // Apply the requested Euler angles.
+        let updatedTransform = NMSEulerConverter.applyEulerAngles(
+            angles,
+            to: originalTransform
+        )
+
+        // Build the updated SceneKit transformation matrix.
+        let matrix = try NMSCoordinateConverter.createMatrix(
+            from: updatedTransform
+        )
+
+        // Update the component's stored NMS vectors.
+        part.updateTransform(updatedTransform)
+
+        // Update our source of truth.
+        project.parts[index] = part
+        self.project = project
+
+        // Synchronize SceneKit.
+        node.simdTransform = matrix
+    }
 }
