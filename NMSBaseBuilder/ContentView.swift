@@ -6,31 +6,20 @@
 //
 
 import SwiftUI
-import BaseCore
 
 struct ContentView: View {
 
-    private let project = BaseProject(
-        type: .base,
-        parts: [],
-        baseVersion: 8
-    )
-
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 0) {
 
             Text("NMS Base Builder")
-                .font(.largeTitle)
+                .font(.title2)
                 .bold()
+                .padding()
 
-            Text("BaseCore Connected!")
-                .foregroundStyle(.green)
-
-            Text("Base Version: \(project.baseVersion)")
-
-            Text("Building Parts: \(project.parts.count)")
+            BaseSceneView()
+                .ignoresSafeArea(edges: .bottom)
         }
-        .padding()
     }
 }
 
