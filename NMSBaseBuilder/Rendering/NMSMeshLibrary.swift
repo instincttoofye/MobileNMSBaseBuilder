@@ -14,7 +14,8 @@ final class NMSMeshLibrary {
     private let meshRegistry: [String: String] = [
         "^PIPESHAPE": "PipeShape",
         "^WALLLIGHTRED": "WallLightRed",
-        "^CYLINDERSHAPE": "CylinderShape"
+        "^CYLINDERSHAPE": "CylinderShape",
+        "^BUILDPAVINGTALL": "BuildPavingTall"
     ]
 
     func createNode(for objectID: String) -> SCNNode {
