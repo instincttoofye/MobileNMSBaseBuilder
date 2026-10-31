@@ -14,6 +14,10 @@ import simd
 final class BaseSceneController {
 
     let scene = SCNScene()
+    
+    private(set) var selectedNode: SCNNode?
+    private let defaultColor = UIColor.systemTeal
+    private let selectedColor = UIColor.systemOrange
 
     init() {
         setupCamera()
@@ -90,7 +94,7 @@ final class BaseSceneController {
                 )
 
                 let material = SCNMaterial()
-                material.diffuse.contents = UIColor.systemTeal
+                material.diffuse.contents = defaultColor
 
                 geometry.materials = [material]
 
@@ -106,5 +110,17 @@ final class BaseSceneController {
         } catch {
             print("Failed to load LampPostA: \(error)")
         }
+    }
+    
+    func selectedNode(_ node: SCNNode) {
+        if let previousNode = selectedNode {
+            previousNode.geometry?.firstMaterial?.diffuse.contents = defaultColor
+        }
+        
+        selectedNode = node
+        node.geometry?.firstMaterial?.diffuse.contents = selectedColor
+        
+        print("Selected: \(node.name ?? "Unknown")")
+        print("Position: \(node.position)")
     }
 }

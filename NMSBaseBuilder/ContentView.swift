@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import SceneKit
 
 struct ContentView: View {
 
+    @State private var controller = BaseSceneController()
+
     var body: some View {
+
         VStack(spacing: 0) {
 
             Text("NMS Base Builder")
@@ -17,7 +21,7 @@ struct ContentView: View {
                 .bold()
                 .padding()
 
-            BaseSceneView()
+            BaseSceneView(controller: controller)
                 .ignoresSafeArea(edges: .bottom)
         }
     }
