@@ -12,7 +12,9 @@ import SceneKit
 final class NMSMeshLibrary {
 
     private let meshRegistry: [String: String] = [
-        "^PIPESHAPE": "PipeShape"
+        "^PIPESHAPE": "PipeShape",
+        "^WALLLIGHTRED": "WallLightRed",
+        "^CYLINDERSHAPE": "CylinderShape"
     ]
 
     func createNode(for objectID: String) -> SCNNode {
@@ -29,7 +31,23 @@ final class NMSMeshLibrary {
         let meshNode = SCNNode()
 
         for child in scene.rootNode.childNodes {
-            meshNode.addChildNode(child.clone())
+            let instance = child.clone()
+
+            instance.enumerateHierarchy { node, _ in
+                guard let geometry = node.geometry else {
+                    return
+                }
+
+                let uniqueGeometry = geometry.copy() as! SCNGeometry
+
+                uniqueGeometry.materials = geometry.materials.map {
+                    $0.copy() as! SCNMaterial
+                }
+
+                node.geometry = uniqueGeometry
+            }
+
+            meshNode.addChildNode(instance)
         }
 
         return meshNode

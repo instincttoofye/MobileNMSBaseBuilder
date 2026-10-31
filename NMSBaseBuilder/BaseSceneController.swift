@@ -47,6 +47,7 @@ final class BaseSceneController {
     
     private var nodePartIndices: [SCNNode: Int] = [:]
     private var partNodes: [Int: SCNNode] = [:]
+    private var originalEmissions: [ObjectIdentifier: Any] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
     private let meshLibrary = NMSMeshLibrary()
@@ -201,6 +202,8 @@ final class BaseSceneController {
         nodePartIndices.removeAll()
 
         selectedNode = nil
+        
+        originalEmissions.removeAll()
     }
     
     func loadProject(_ newProject: BaseProject) throws {
@@ -311,9 +314,26 @@ final class BaseSceneController {
             }
 
             for material in geometry.materials {
-                material.diffuse.contents = highlighted
-                    ? selectedColor
-                    : defaultColor
+
+                let identifier = ObjectIdentifier(material)
+
+                if highlighted {
+
+                    if originalEmissions[identifier] == nil {
+                        originalEmissions[identifier] =
+                            material.emission.contents ?? UIColor.black
+                    }
+
+                    material.emission.contents = UIColor.systemOrange
+
+                } else {
+
+                    if let original = originalEmissions.removeValue(
+                        forKey: identifier
+                    ) {
+                        material.emission.contents = original
+                    }
+                }
             }
         }
     }
