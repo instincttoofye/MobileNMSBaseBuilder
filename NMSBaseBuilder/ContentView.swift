@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var controller = BaseSceneController()
+    @State private var isExporting = false
+    @State private var exportDocument: BaseProjectDocument?
 
     var body: some View {
 
@@ -20,19 +22,12 @@ struct ContentView: View {
                 .bold()
                 .padding()
             
-            Button("Test JSON Export") {
-
+            Button("Export JSON") {
                 do {
                     let data = try controller.exportProject()
 
-                    print("Exported \(data.count) bytes")
-
-                    if let json = String(
-                        data: data,
-                        encoding: .utf8
-                    ) {
-                        print(json)
-                    }
+                    exportDocument = BaseProjectDocument(data: data)
+                    isExporting = true
 
                 } catch {
                     print("Export failed: \(error)")
@@ -65,6 +60,21 @@ struct ContentView: View {
                 }
         }
         .ignoresSafeArea(edges: .bottom)
+        .fileExporter(
+            isPresented: $isExporting,
+            document: exportDocument,
+            contentType: .json,
+            defaultFilename: "NMSBase"
+        ) { result in
+
+            switch result {
+            case .success(let url):
+                print("Exported successfully: \(url)")
+
+            case .failure(let error):
+                print("Export failed: \(error)")
+            }
+        }
     }
 }
 
