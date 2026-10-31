@@ -11,12 +11,30 @@ import BaseCore
 import simd
 
 @MainActor
+@Observable
 final class BaseSceneController {
 
     let scene = SCNScene()
     
     private(set) var project: BaseProject?
     private(set) var selectedNode: SCNNode?
+    
+    var selectedPart: BasePart? {
+        guard let selectedNode else {
+            return nil
+        }
+
+        return part(for: selectedNode)
+    }
+    
+    var selectedPartIndex: Int? {
+        guard let selectedNode else {
+            return nil
+        }
+
+        return nodePartIndices[selectedNode]
+    }
+    
     private var nodePartIndices: [SCNNode: Int] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange

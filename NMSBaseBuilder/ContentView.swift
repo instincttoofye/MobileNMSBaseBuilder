@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SceneKit
 
 struct ContentView: View {
 
@@ -22,8 +21,20 @@ struct ContentView: View {
                 .padding()
 
             BaseSceneView(controller: controller)
-                .ignoresSafeArea(edges: .bottom)
+                .overlay(alignment: .bottom) {
+
+                    if let part = controller.selectedPart,
+                       let index = controller.selectedPartIndex {
+
+                        PartInspectorView(
+                            part: part,
+                            index: index
+                        )
+                        .padding()
+                    }
+                }
         }
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
