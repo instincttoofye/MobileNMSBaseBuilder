@@ -15,7 +15,9 @@ final class BaseSceneController {
 
     let scene = SCNScene()
     
+    private(set) var project: BaseProject?
     private(set) var selectedNode: SCNNode?
+    private var nodePartIndices: [SCNNode: Int] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
 
@@ -75,10 +77,12 @@ final class BaseSceneController {
                 BaseProject.self,
                 from: data
             )
+            
+            self.project = project
 
             print("Loaded \(project.parts.count) NMS parts")
 
-            for part in project.parts {
+            for (index, part) in project.parts.enumerated() {
 
                 let transform = try part.transform
 
@@ -102,6 +106,8 @@ final class BaseSceneController {
 
                 node.name = part.objectID
 
+                nodePartIndices[node] = index
+
                 node.simdTransform = matrix
 
                 scene.rootNode.addChildNode(node)
@@ -112,7 +118,7 @@ final class BaseSceneController {
         }
     }
     
-    func selectedNode(_ node: SCNNode) {
+    func selectNode(_ node: SCNNode) {
         if let previousNode = selectedNode {
             previousNode.geometry?.firstMaterial?.diffuse.contents = defaultColor
         }
@@ -122,5 +128,26 @@ final class BaseSceneController {
         
         print("Selected: \(node.name ?? "Unknown")")
         print("Position: \(node.position)")
+        
+        if let part = part(for: node),
+           let index = nodePartIndices[node] {
+
+            print("Part index: \(index)")
+            print("ObjectID: \(part.objectID)")
+            print("NMS Position: \(part.position)")
+            print("NMS Up: \(part.up)")
+            print("NMS At: \(part.at)")
+        }
+    }
+    
+    func part(for node: SCNNode) -> BasePart? {
+
+        guard let index = nodePartIndices[node],
+              let project,
+              project.parts.indices.contains(index) else {
+            return nil
+        }
+
+        return project.parts[index]
     }
 }

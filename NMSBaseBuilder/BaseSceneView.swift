@@ -64,7 +64,7 @@ struct BaseSceneView: UIViewRepresentable {
                 return
             }
 
-            controller.selectedNode(node)
+            controller.selectNode(node)
         }
     }
 }
