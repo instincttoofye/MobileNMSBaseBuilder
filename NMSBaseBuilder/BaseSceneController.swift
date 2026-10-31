@@ -99,49 +99,14 @@ final class BaseSceneController {
         }
 
         do {
-
             let data = try Data(contentsOf: url)
 
             let project = try JSONDecoder().decode(
                 BaseProject.self,
                 from: data
             )
-            
-            self.project = project
 
-            print("Loaded \(project.parts.count) NMS parts")
-
-            for (index, part) in project.parts.enumerated() {
-
-                let transform = try part.transform
-
-                let matrix = try NMSCoordinateConverter.createMatrix(
-                    from: transform
-                )
-
-                let geometry = SCNBox(
-                    width: 0.5,
-                    height: 0.5,
-                    length: 0.5,
-                    chamferRadius: 0
-                )
-
-                let material = SCNMaterial()
-                material.diffuse.contents = defaultColor
-
-                geometry.materials = [material]
-
-                let node = SCNNode(geometry: geometry)
-
-                node.name = part.objectID
-
-                nodePartIndices[node] = index
-                partNodes[index] = node
-
-                node.simdTransform = matrix
-
-                scene.rootNode.addChildNode(node)
-            }
+            try loadProject(project)
 
         } catch {
             print("Failed to load LampPostA: \(error)")
@@ -232,5 +197,63 @@ final class BaseSceneController {
         ]
 
         return try encoder.encode(project)
+    }
+    
+    private func clearProjectNodes() {
+
+        for node in partNodes.values {
+            node.removeFromParentNode()
+        }
+
+        partNodes.removeAll()
+        nodePartIndices.removeAll()
+
+        selectedNode = nil
+    }
+    
+    func loadProject(_ newProject: BaseProject) throws {
+
+        var newNodes: [(index: Int, node: SCNNode)] = []
+
+        for (index, part) in newProject.parts.enumerated() {
+
+            let transform = try part.transform
+
+            let matrix = try NMSCoordinateConverter.createMatrix(
+                from: transform
+            )
+
+            let geometry = SCNBox(
+                width: 0.5,
+                height: 0.5,
+                length: 0.5,
+                chamferRadius: 0
+            )
+
+            let material = SCNMaterial()
+            material.diffuse.contents = defaultColor
+            geometry.materials = [material]
+
+            let node = SCNNode(geometry: geometry)
+            node.name = part.objectID
+            node.simdTransform = matrix
+
+            newNodes.append((index: index, node: node))
+        }
+
+        // Only replace the existing scene after every part succeeds.
+        clearProjectNodes()
+
+        self.project = newProject
+
+        for entry in newNodes {
+
+            nodePartIndices[entry.node] = entry.index
+            partNodes[entry.index] = entry.node
+
+            scene.rootNode.addChildNode(entry.node)
+        }
+
+        print("Loaded \(newProject.parts.count) NMS parts")
     }
 }

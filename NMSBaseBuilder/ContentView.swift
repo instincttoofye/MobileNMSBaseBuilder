@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import BaseCore
 
 struct ContentView: View {
 
     @State private var controller = BaseSceneController()
     @State private var isExporting = false
     @State private var exportDocument: BaseProjectDocument?
+    @State private var isImporting: Bool = false
 
     var body: some View {
 
@@ -32,6 +34,10 @@ struct ContentView: View {
                 } catch {
                     print("Export failed: \(error)")
                 }
+            }
+            
+            Button("Import JSON") {
+                isImporting = true
             }
 
             BaseSceneView(controller: controller)
@@ -73,6 +79,47 @@ struct ContentView: View {
 
             case .failure(let error):
                 print("Export failed: \(error)")
+            }
+        }
+        .fileImporter(
+            isPresented: $isImporting,
+            allowedContentTypes: [.json],
+            allowsMultipleSelection: false
+        ) { result in
+
+            switch result {
+
+            case .success(let urls):
+                guard let url = urls.first else {
+                    return
+                }
+
+                let hasAccess = url.startAccessingSecurityScopedResource()
+
+                defer {
+                    if hasAccess {
+                        url.stopAccessingSecurityScopedResource()
+                    }
+                }
+
+                do {
+                    let data = try Data(contentsOf: url)
+
+                    let project = try JSONDecoder().decode(
+                        BaseProject.self,
+                        from: data
+                    )
+
+                    try controller.loadProject(project)
+
+                    print("Imported: \(url.lastPathComponent)")
+
+                } catch {
+                    print("Failed to import project: \(error)")
+                }
+
+            case .failure(let error):
+                print("Import failed: \(error)")
             }
         }
     }
