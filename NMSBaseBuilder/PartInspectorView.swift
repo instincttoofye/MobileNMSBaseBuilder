@@ -17,6 +17,8 @@ struct PartInspectorView: View {
     let onPositionChange: ([Float]) -> Void
 
     @State private var xPosition = ""
+    @State private var yPosition = ""
+    @State private var zPosition = ""
 
     var body: some View {
 
@@ -40,71 +42,89 @@ struct PartInspectorView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            HStack {
+            HStack(spacing: 12) {
 
-                VStack(alignment: .leading, spacing: 4) {
+                coordinateField(
+                    "X",
+                    text: $xPosition,
+                    axis: 0
+                )
 
-                    Text("X")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                coordinateField(
+                    "Y",
+                    text: $yPosition,
+                    axis: 1
+                )
 
-                    TextField("X", text: $xPosition)
-                        .keyboardType(.numbersAndPunctuation)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 95)
-                        .onSubmit {
-                            updateXPosition()
-                        }
-                }
-
-                Spacer()
-
-                coordinate("Y", value: part.position[1])
-
-                Spacer()
-
-                coordinate("Z", value: part.position[2])
+                coordinateField(
+                    "Z",
+                    text: $zPosition,
+                    axis: 2
+                )
             }
         }
         .padding()
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .onAppear {
-            xPosition = String(part.position[0])
+            resetPositionFields()
         }
         .onChange(of: index) { _, _ in
-            xPosition = String(part.position[0])
+            resetPositionFields()
+        }
+        .onChange(of: part.position) { _, _ in
+            resetPositionFields()
         }
     }
 
-    private func coordinate(
-        _ axis: String,
-        value: Float
+    private func coordinateField(
+        _ label: String,
+        text: Binding<String>,
+        axis: Int
     ) -> some View {
 
         VStack(alignment: .leading, spacing: 4) {
 
-            Text(axis)
+            Text(label)
                 .font(.caption2)
                 .foregroundStyle(.secondary)
 
-            Text(value, format: .number.precision(.fractionLength(3)))
-                .font(.system(.subheadline, design: .monospaced))
+            TextField(label, text: text)
+                .keyboardType(.numbersAndPunctuation)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit {
+                    updatePosition(
+                        axis: axis,
+                        text: text.wrappedValue
+                    )
+                }
         }
+        .frame(maxWidth: .infinity)
     }
     
-    private func updateXPosition() {
+    private func updatePosition(
+        axis: Int,
+        text: String
+    ) {
 
-        guard let newX = Float(xPosition),
-              newX.isFinite else {
-            xPosition = String(part.position[0])
+        guard let newValue = Float(text),
+              newValue.isFinite else {
+
+            resetPositionFields()
             return
         }
 
         var newPosition = part.position
 
-        newPosition[0] = newX
+        newPosition[axis] = newValue
 
         onPositionChange(newPosition)
+    }
+    
+    private func resetPositionFields() {
+
+        xPosition = String(part.position[0])
+        yPosition = String(part.position[1])
+        zPosition = String(part.position[2])
     }
 }
