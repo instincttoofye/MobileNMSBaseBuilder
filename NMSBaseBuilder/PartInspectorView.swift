@@ -15,10 +15,14 @@ struct PartInspectorView: View {
     let index: Int
     
     let onPositionChange: ([Float]) -> Void
+    let onRotationChange: (NMSEulerConverter.EulerAngles) -> Void
 
     @State private var xPosition = ""
     @State private var yPosition = ""
     @State private var zPosition = ""
+    @State private var yawDegrees = ""
+    @State private var pitchDegrees = ""
+    @State private var rollDegrees = ""
 
     var body: some View {
 
@@ -62,6 +66,32 @@ struct PartInspectorView: View {
                     axis: 2
                 )
             }
+            
+            Divider()
+
+            Text("ROTATION")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 12) {
+                rotationField(
+                    "Pitch",
+                    text: $pitchDegrees,
+                    axis: 0
+                )
+
+                rotationField(
+                    "Yaw",
+                    text: $yawDegrees,
+                    axis: 1
+                )
+
+                rotationField(
+                    "Roll",
+                    text: $rollDegrees,
+                    axis: 2
+                )
+            }
         }
         .padding()
         .background(.regularMaterial)
@@ -74,6 +104,12 @@ struct PartInspectorView: View {
         }
         .onChange(of: part.position) { _, _ in
             resetPositionFields()
+        }
+        .onChange(of: part.up) { _, _ in
+            resetRotationFields()
+        }
+        .onChange(of: part.at) { _, _ in
+            resetRotationFields()
         }
     }
 
@@ -126,5 +162,88 @@ struct PartInspectorView: View {
         xPosition = String(part.position[0])
         yPosition = String(part.position[1])
         zPosition = String(part.position[2])
+    }
+    
+    private func resetRotationFields() {
+        do {
+            let angles = try NMSEulerConverter.extractEulerAngles(
+                from: part.transform
+            )
+
+            let radiansToDegrees: Float = 180 / .pi
+
+            pitchDegrees = String(angles.pitch * radiansToDegrees)
+            yawDegrees = String(angles.yaw * radiansToDegrees)
+            rollDegrees = String(angles.roll * radiansToDegrees)
+
+        } catch {
+            print("Failed to extract rotation: \(error)")
+            pitchDegrees = ""
+            yawDegrees = ""
+            rollDegrees = ""
+        }
+    }
+    
+    private func updateRotation(
+        axis: Int,
+        text: String
+    ) {
+        guard let degrees = Float(text),
+              degrees.isFinite else {
+            resetRotationFields()
+            return
+        }
+
+        do {
+            var angles = try NMSEulerConverter.extractEulerAngles(
+                from: part.transform
+            )
+
+            let radians = degrees * .pi / 180
+
+            switch axis {
+            case 0:
+                angles.pitch = radians
+
+            case 1:
+                angles.yaw = radians
+
+            case 2:
+                angles.roll = radians
+
+            default:
+                return
+            }
+
+            onRotationChange(angles)
+
+        } catch {
+            print("Failed to update rotation: \(error)")
+            resetRotationFields()
+        }
+    }
+    
+    private func rotationField(
+        _ label: String,
+        text: Binding<String>,
+        axis: Int
+    ) -> some View {
+
+        VStack(alignment: .leading, spacing: 4) {
+            Text("\(label) (°)")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            TextField(label, text: text)
+                .keyboardType(.numbersAndPunctuation)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit {
+                    updateRotation(
+                        axis: axis,
+                        text: text.wrappedValue
+                    )
+                }
+        }
+        .frame(maxWidth: .infinity)
     }
 }

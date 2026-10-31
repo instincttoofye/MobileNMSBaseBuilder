@@ -60,6 +60,16 @@ struct ContentView: View {
                                 } catch {
                                     print("Failed to update position: \(error)")
                                 }
+                            },
+                            onRotationChange: { angles in
+                                do {
+                                    try controller.updatePartRotation(
+                                        at: index,
+                                        angles: angles
+                                    )
+                                } catch {
+                                    print("Rotation update failed: \(error)")
+                                }
                             }
                         )
                         .padding()
