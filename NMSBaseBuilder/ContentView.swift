@@ -28,7 +28,18 @@ struct ContentView: View {
 
                         PartInspectorView(
                             part: part,
-                            index: index
+                            index: index,
+                            onPositionChange: { newPosition in
+
+                                do {
+                                    try controller.updatePartPosition(
+                                        at: index,
+                                        position: newPosition
+                                    )
+                                } catch {
+                                    print("Failed to update position: \(error)")
+                                }
+                            }
                         )
                         .padding()
                     }

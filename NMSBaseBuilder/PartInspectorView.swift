@@ -13,6 +13,10 @@ struct PartInspectorView: View {
 
     let part: BasePart
     let index: Int
+    
+    let onPositionChange: ([Float]) -> Void
+
+    @State private var xPosition = ""
 
     var body: some View {
 
@@ -38,7 +42,20 @@ struct PartInspectorView: View {
 
             HStack {
 
-                coordinate("X", value: part.position[0])
+                VStack(alignment: .leading, spacing: 4) {
+
+                    Text("X")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+
+                    TextField("X", text: $xPosition)
+                        .keyboardType(.numbersAndPunctuation)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(width: 95)
+                        .onSubmit {
+                            updateXPosition()
+                        }
+                }
 
                 Spacer()
 
@@ -52,6 +69,12 @@ struct PartInspectorView: View {
         .padding()
         .background(.regularMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 16))
+        .onAppear {
+            xPosition = String(part.position[0])
+        }
+        .onChange(of: index) { _, _ in
+            xPosition = String(part.position[0])
+        }
     }
 
     private func coordinate(
@@ -68,5 +91,20 @@ struct PartInspectorView: View {
             Text(value, format: .number.precision(.fractionLength(3)))
                 .font(.system(.subheadline, design: .monospaced))
         }
+    }
+    
+    private func updateXPosition() {
+
+        guard let newX = Float(xPosition),
+              newX.isFinite else {
+            xPosition = String(part.position[0])
+            return
+        }
+
+        var newPosition = part.position
+
+        newPosition[0] = newX
+
+        onPositionChange(newPosition)
     }
 }

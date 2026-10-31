@@ -17,6 +17,7 @@ final class BaseSceneController {
     enum PositionUpdateError: Error {
         case invalidPosition
         case invalidPartIndex
+        case missingSceneNode
     }
 
     let scene = SCNScene()
@@ -41,6 +42,7 @@ final class BaseSceneController {
     }
     
     private var nodePartIndices: [SCNNode: Int] = [:]
+    private var partNodes: [Int: SCNNode] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
 
@@ -48,18 +50,6 @@ final class BaseSceneController {
         setupCamera()
         setupLighting()
         loadLampPost()
-
-        do {
-            try updatePartPosition(
-                at: 5,
-                position: [3, 2.9936051, 0]
-            )
-
-            print("Updated part position successfully")
-            print("New position: \(project?.parts[5].position ?? [])")
-        } catch {
-            print("Failed to update position: \(error)")
-        }
     }
 
     private func setupCamera() {
@@ -142,6 +132,7 @@ final class BaseSceneController {
                 node.name = part.objectID
 
                 nodePartIndices[node] = index
+                partNodes[index] = node
 
                 node.simdTransform = matrix
 
@@ -190,20 +181,36 @@ final class BaseSceneController {
         at index: Int,
         position: [Float]
     ) throws {
-        guard position.count == 3 else {
+
+        guard position.count == 3,
+              position.allSatisfy(\.isFinite) else {
             throw PositionUpdateError.invalidPosition
         }
-        
-        guard var project, project.parts.indices.contains(index) else {
+
+        guard var project,
+              project.parts.indices.contains(index) else {
             throw PositionUpdateError.invalidPartIndex
         }
-        
+
+        guard let node = partNodes[index] else {
+            throw PositionUpdateError.missingSceneNode
+        }
+
+        // Retrieve and modify the NMS component.
         var part = project.parts[index]
-        
         part.position = position
-        
+
+        // Rebuild its transformation matrix.
+        let transform = try part.transform
+
+        let matrix = try NMSCoordinateConverter.createMatrix(
+            from: transform
+        )
+
+       
         project.parts[index] = part
-        
         self.project = project
+
+        node.simdTransform = matrix
     }
 }
