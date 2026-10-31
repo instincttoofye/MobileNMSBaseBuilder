@@ -60,11 +60,12 @@ struct BaseSceneView: UIViewRepresentable {
                 options: nil
             )
 
-            guard let node = results.first?.node else {
+            guard let hitNode = results.first?.node,
+                  let componentNode = controller.componentNode(for: hitNode) else {
                 return
             }
 
-            controller.selectNode(node)
+            controller.selectNode(componentNode)
         }
     }
 }

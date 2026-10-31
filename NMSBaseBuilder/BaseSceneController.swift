@@ -49,6 +49,7 @@ final class BaseSceneController {
     private var partNodes: [Int: SCNNode] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
+    private let meshLibrary = NMSMeshLibrary()
 
     init() {
         setupCamera()
@@ -113,25 +114,16 @@ final class BaseSceneController {
         }
     }
     
-    func selectNode(_ node: SCNNode) {
-        if let previousNode = selectedNode {
-            previousNode.geometry?.firstMaterial?.diffuse.contents = defaultColor
-        }
-        
-        selectedNode = node
-        node.geometry?.firstMaterial?.diffuse.contents = selectedColor
-        
-        print("Selected: \(node.name ?? "Unknown")")
-        print("Position: \(node.position)")
-        
-        if let part = part(for: node),
-           let index = nodePartIndices[node] {
+    func selectNode(_ node: SCNNode?) {
 
-            print("Part index: \(index)")
-            print("ObjectID: \(part.objectID)")
-            print("NMS Position: \(part.position)")
-            print("NMS Up: \(part.up)")
-            print("NMS At: \(part.at)")
+        if let selectedNode {
+            setHighlight(false, for: selectedNode)
+        }
+
+        selectedNode = node
+
+        if let node {
+            setHighlight(true, for: node)
         }
     }
     
@@ -223,20 +215,16 @@ final class BaseSceneController {
                 from: transform
             )
 
-            let geometry = SCNBox(
-                width: 0.5,
-                height: 0.5,
-                length: 0.5,
-                chamferRadius: 0
-            )
+            let node = SCNNode()
 
-            let material = SCNMaterial()
-            material.diffuse.contents = defaultColor
-            geometry.materials = [material]
-
-            let node = SCNNode(geometry: geometry)
             node.name = part.objectID
             node.simdTransform = matrix
+
+            let meshNode = meshLibrary.createNode(
+                for: part.objectID
+            )
+
+            node.addChildNode(meshNode)
 
             newNodes.append((index: index, node: node))
         }
@@ -297,5 +285,36 @@ final class BaseSceneController {
 
         // Synchronize SceneKit.
         node.simdTransform = matrix
+    }
+    
+    func componentNode(for hitNode: SCNNode) -> SCNNode? {
+        var currentNode: SCNNode? = hitNode
+
+        while let node = currentNode {
+            if nodePartIndices[node] != nil {
+                return node
+            }
+
+            currentNode = node.parent
+        }
+
+        return nil
+    }
+    
+    private func setHighlight(
+        _ highlighted: Bool,
+        for node: SCNNode
+    ) {
+        node.enumerateHierarchy { child, _ in
+            guard let geometry = child.geometry else {
+                return
+            }
+
+            for material in geometry.materials {
+                material.diffuse.contents = highlighted
+                    ? selectedColor
+                    : defaultColor
+            }
+        }
     }
 }
