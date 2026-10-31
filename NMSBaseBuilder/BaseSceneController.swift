@@ -19,6 +19,10 @@ final class BaseSceneController {
         case invalidPartIndex
         case missingSceneNode
     }
+    
+    enum ExportError: Error {
+        case noProjectLoaded
+    }
 
     let scene = SCNScene()
     
@@ -212,5 +216,21 @@ final class BaseSceneController {
         self.project = project
 
         node.simdTransform = matrix
+    }
+    
+    func exportProject() throws -> Data {
+
+        guard let project else {
+            throw ExportError.noProjectLoaded
+        }
+
+        let encoder = JSONEncoder()
+
+        encoder.outputFormatting = [
+            .prettyPrinted,
+            .sortedKeys
+        ]
+
+        return try encoder.encode(project)
     }
 }

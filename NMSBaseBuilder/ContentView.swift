@@ -19,6 +19,25 @@ struct ContentView: View {
                 .font(.title2)
                 .bold()
                 .padding()
+            
+            Button("Test JSON Export") {
+
+                do {
+                    let data = try controller.exportProject()
+
+                    print("Exported \(data.count) bytes")
+
+                    if let json = String(
+                        data: data,
+                        encoding: .utf8
+                    ) {
+                        print(json)
+                    }
+
+                } catch {
+                    print("Export failed: \(error)")
+                }
+            }
 
             BaseSceneView(controller: controller)
                 .overlay(alignment: .bottom) {
