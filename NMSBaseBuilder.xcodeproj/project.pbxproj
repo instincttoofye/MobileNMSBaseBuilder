@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EA2D85923095C9DF00DABF34 /* BaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA2D85913095C9DF00DABF34 /* BaseCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EA2D85743095C88000DABF34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2D85923095C9DF00DABF34 /* BaseCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = NMSBaseBuilder;
 			packageProductDependencies = (
+				EA2D85913095C9DF00DABF34 /* BaseCore */,
 			);
 			productName = NMSBaseBuilder;
 			productReference = EA2D85633095C87E00DABF34 /* NMSBaseBuilder.app */;
@@ -568,6 +574,13 @@
 			relativePath = ../BaseCore;
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA2D85913095C9DF00DABF34 /* BaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA2D855B3095C87E00DABF34 /* Project object */;
 }
