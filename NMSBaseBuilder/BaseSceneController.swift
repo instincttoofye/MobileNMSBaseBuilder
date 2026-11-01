@@ -337,4 +337,41 @@ final class BaseSceneController {
             }
         }
     }
+    
+    func addPart(_ part: BasePart) throws {
+        guard var project else {
+            throw ExportError.noProjectLoaded
+        }
+
+        let index = project.parts.count
+
+        let transform = try part.transform
+
+        let matrix = try NMSCoordinateConverter.createMatrix(
+            from: transform
+        )
+
+        let node = SCNNode()
+        node.name = part.objectID
+        node.simdTransform = matrix
+
+        let meshNode = meshLibrary.createNode(
+            for: part.objectID
+        )
+
+        node.addChildNode(meshNode)
+
+        // Update our source of truth.
+        project.parts.append(part)
+        self.project = project
+
+        // Register the new component.
+        nodePartIndices[node] = index
+        partNodes[index] = node
+
+        scene.rootNode.addChildNode(node)
+
+        // Automatically select the new component.
+        selectNode(node)
+    }
 }

@@ -40,6 +40,24 @@ struct ContentView: View {
             Button("Import JSON") {
                 isImporting = true
             }
+            
+            Button("Add Pipe Shape") {
+                let part = BasePart(
+                    objectID: "^PIPESHAPE",
+                    position: [2, 3, 0],
+                    up: [0, 1, 0],
+                    at: [0, 0, 1],
+                    timestamp: 0,
+                    userData: 0
+                )
+
+                do {
+                    try controller.addPart(part)
+                    print("Added new pipe shape")
+                } catch {
+                    print("Failed to add part: \(error)")
+                }
+            }
 
             BaseSceneView(controller: controller)
                 .overlay(alignment: .bottom) {
