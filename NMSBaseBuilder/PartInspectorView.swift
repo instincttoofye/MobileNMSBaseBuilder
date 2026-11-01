@@ -98,9 +98,11 @@ struct PartInspectorView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .onAppear {
             resetPositionFields()
+            resetRotationFields()
         }
         .onChange(of: index) { _, _ in
             resetPositionFields()
+            resetRotationFields()
         }
         .onChange(of: part.position) { _, _ in
             resetPositionFields()
