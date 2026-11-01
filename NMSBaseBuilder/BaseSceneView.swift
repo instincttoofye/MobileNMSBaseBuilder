@@ -18,7 +18,7 @@ struct BaseSceneView: UIViewRepresentable {
 
         view.scene = controller.scene
         view.allowsCameraControl = true
-        view.backgroundColor = .white
+        view.backgroundColor = .black
 
         let tapGesture = UITapGestureRecognizer(
             target: context.coordinator,
@@ -62,6 +62,7 @@ struct BaseSceneView: UIViewRepresentable {
 
             guard let hitNode = results.first?.node,
                   let componentNode = controller.componentNode(for: hitNode) else {
+                controller.selectNode(nil)
                 return
             }
 

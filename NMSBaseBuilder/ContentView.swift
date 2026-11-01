@@ -76,6 +76,7 @@ struct ContentView: View {
                     }
                 }
         }
+        .background(Color(.black))
         .ignoresSafeArea(edges: .bottom)
         .fileExporter(
             isPresented: $isExporting,
