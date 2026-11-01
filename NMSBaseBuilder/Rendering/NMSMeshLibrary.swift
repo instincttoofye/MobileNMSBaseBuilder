@@ -15,7 +15,9 @@ final class NMSMeshLibrary {
         "^PIPESHAPE": "PipeShape",
         "^WALLLIGHTRED": "WallLightRed",
         "^CYLINDERSHAPE": "CylinderShape",
-        "^BUILDPAVINGTALL": "BuildPavingTall"
+        "^BUILDPAVINGTALL": "BuildPavingTall",
+        "^C_WALL_Q_H": "LegacyConcreteShortWall",
+        "^WALLLIGHTWHITE": "WallLightWhite"
     ]
 
     func createNode(for objectID: String) -> SCNNode {
