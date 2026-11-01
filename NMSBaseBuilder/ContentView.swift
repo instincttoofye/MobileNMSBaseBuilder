@@ -11,9 +11,10 @@ import BaseCore
 struct ContentView: View {
 
     @State private var controller = BaseSceneController()
-    @State private var isExporting = false
+    @State private var isExporting: Bool = false
     @State private var exportDocument: BaseProjectDocument?
     @State private var isImporting: Bool = false
+    @State private var isShowingPartBrowser: Bool = false
 
     var body: some View {
 
@@ -41,22 +42,8 @@ struct ContentView: View {
                 isImporting = true
             }
             
-            Button("Add Pipe Shape") {
-                let part = BasePart(
-                    objectID: "^PIPESHAPE",
-                    position: [2, 3, 0],
-                    up: [0, 1, 0],
-                    at: [0, 0, 1],
-                    timestamp: 0,
-                    userData: 0
-                )
-
-                do {
-                    try controller.addPart(part)
-                    print("Added new pipe shape")
-                } catch {
-                    print("Failed to add part: \(error)")
-                }
+            Button("Add Part") {
+                isShowingPartBrowser = true
             }
 
             BaseSceneView(controller: controller)
@@ -93,6 +80,28 @@ struct ContentView: View {
                         .padding()
                     }
                 }
+        }
+        .sheet(isPresented: $isShowingPartBrowser) {
+            NMSPartBrowserView { definition in
+
+                let part = BasePart(
+                    objectID: definition.objectID,
+                    position: [2, 3, 0],
+                    up: [0, 1, 0],
+                    at: [0, 0, 1],
+                    timestamp: 0,
+                    userData: 0
+                )
+
+                do {
+                    try controller.addPart(part)
+                    print("Added: \(definition.name)")
+                } catch {
+                    print("Failed to add part: \(error)")
+                }
+            }
+            .presentationDetents([.height(300), .medium])
+            .presentationDragIndicator(.visible)
         }
         .background(Color(.black))
         .ignoresSafeArea(edges: .bottom)
