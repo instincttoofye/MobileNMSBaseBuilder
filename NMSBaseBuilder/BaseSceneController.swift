@@ -58,7 +58,7 @@ final class BaseSceneController {
     private var originalEmissions: [ObjectIdentifier: Any] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
-    private let meshLibrary = NMSMeshLibrary()
+    private let renderer = BaseSceneRenderer()
     weak var sceneView: SCNView?
 
     init() {
@@ -216,22 +216,7 @@ final class BaseSceneController {
 
         for (index, part) in newProject.parts.enumerated() {
 
-            let transform = try part.transform
-
-            let matrix = try NMSCoordinateConverter.createMatrix(
-                from: transform
-            )
-
-            let node = SCNNode()
-
-            node.name = part.objectID
-            node.simdTransform = matrix
-
-            let meshNode = meshLibrary.createNode(
-                for: part.objectID
-            )
-
-            node.addChildNode(meshNode)
+            let node = try renderer.createNode(for: part)
 
             newNodes.append((index: index, node: node))
         }
@@ -343,22 +328,7 @@ final class BaseSceneController {
         }
 
         // Prepare the SceneKit representation.
-        let transform = try part.transform
-
-        let matrix = try NMSCoordinateConverter.createMatrix(
-            from: transform
-        )
-
-        let node = SCNNode()
-        node.name = part.objectID
-        node.simdTransform = matrix
-
-        let meshNode = meshLibrary.createNode(
-            for: part.objectID
-        )
-
-        node.addChildNode(meshNode)
-
+        let node = try renderer.createNode(for: part)
         // Commit the model change.
         let index = try projectEditor.commitPartAddition(part)
 
