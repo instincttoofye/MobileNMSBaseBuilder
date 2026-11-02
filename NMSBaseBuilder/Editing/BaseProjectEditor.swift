@@ -13,11 +13,7 @@ import BaseCore
 @Observable
 final class BaseProjectEditor {
     
-    enum EditError: Error {
-        case noProjectLoaded
-        case invalidPartIndex
-        case invalidPosition
-    }
+
 
     private(set) var project: BaseProject?
 
@@ -97,6 +93,12 @@ final class BaseProjectEditor {
         at index: Int,
         angles: NMSEulerConverter.EulerAngles
     ) throws -> BasePart {
+
+        guard angles.pitch.isFinite,
+              angles.yaw.isFinite,
+              angles.roll.isFinite else {
+            throw EditError.invalidRotation
+        }
 
         guard let project,
               project.parts.indices.contains(index) else {
