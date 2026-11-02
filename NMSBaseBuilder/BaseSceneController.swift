@@ -337,12 +337,12 @@ final class BaseSceneController {
     }
     
     func addPart(_ part: BasePart) throws {
-        guard var project else {
+
+        guard let previousProject = project else {
             throw ExportError.noProjectLoaded
         }
 
-        let index = project.parts.count
-
+        // Prepare the SceneKit representation.
         let transform = try part.transform
 
         let matrix = try NMSCoordinateConverter.createMatrix(
@@ -359,18 +359,19 @@ final class BaseSceneController {
 
         node.addChildNode(meshNode)
 
-        // Update our source of truth.
-        recordSnapshot(project)
-        project.parts.append(part)
-        projectEditor.loadProject(project)
+        // Commit the model change.
+        let index = try projectEditor.commitPartAddition(part)
 
-        // Register the new component.
+        // Preserve the previous project for Undo.
+        recordSnapshot(previousProject)
+
+        // Register the SceneKit node.
         nodePartIndices[node] = index
         partNodes[index] = node
 
         scene.rootNode.addChildNode(node)
 
-        // Automatically select the new component.
+        // Select the newly added component.
         selectNode(node)
     }
     
@@ -396,7 +397,7 @@ final class BaseSceneController {
     
     func deleteSelectedPart() throws {
 
-        guard var project else {
+        guard let previousProject = project else {
             throw ExportError.noProjectLoaded
         }
 
@@ -405,14 +406,16 @@ final class BaseSceneController {
             return
         }
 
-        // Remove the selected part from the project.
-        recordSnapshot(project)
-        project.parts.remove(at: index)
+        // Commit the model deletion first.
+        try projectEditor.commitPartDeletion(at: index)
 
-        // Remove its SceneKit node.
+        // Preserve the previous state for Undo.
+        recordSnapshot(previousProject)
+
+        // Remove the corresponding SceneKit node.
         selectedNode.removeFromParentNode()
 
-        // Clear selection and highlighting state.
+        // Clear selection and highlighting.
         selectNode(nil)
 
         // Remove the deleted node from our mappings.
@@ -435,9 +438,6 @@ final class BaseSceneController {
 
         nodePartIndices = updatedNodePartIndices
         partNodes = updatedPartNodes
-
-        // Commit the updated project.
-        projectEditor.loadProject(project)
     }
     
     private func recordSnapshot(_ snapshot: BaseProject) {

@@ -66,6 +66,33 @@ final class BaseProjectEditor {
         self.project = project
     }
     
+    func commitPartAddition(_ part: BasePart) throws -> Int {
+
+        guard var project else {
+            throw EditError.noProjectLoaded
+        }
+
+        let index = project.parts.count
+
+        project.parts.append(part)
+
+        self.project = project
+
+        return index
+    }
+    
+    func commitPartDeletion(at index: Int) throws {
+
+        guard var project,
+              project.parts.indices.contains(index) else {
+            throw EditError.invalidPartIndex
+        }
+
+        project.parts.remove(at: index)
+
+        self.project = project
+    }
+    
     func prepareRotationUpdate(
         at index: Int,
         angles: NMSEulerConverter.EulerAngles
