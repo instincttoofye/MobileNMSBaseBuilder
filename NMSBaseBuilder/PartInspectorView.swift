@@ -16,6 +16,7 @@ struct PartInspectorView: View {
     
     let onPositionChange: ([Float]) -> Void
     let onRotationChange: (NMSEulerConverter.EulerAngles) -> Void
+    let onDelete: () -> Void
 
     @State private var xPosition = ""
     @State private var yPosition = ""
@@ -23,6 +24,7 @@ struct PartInspectorView: View {
     @State private var yawDegrees = ""
     @State private var pitchDegrees = ""
     @State private var rollDegrees = ""
+    @State private var showingDeleteConfirmation: Bool = false
 
     var body: some View {
 
@@ -92,6 +94,27 @@ struct PartInspectorView: View {
                     axis: 2
                 )
             }
+            
+            Button(role: .destructive) {
+                showingDeleteConfirmation = true
+            } label: {
+                Label("Delete Part", systemImage: "trash")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+        }
+        .confirmationDialog(
+            "Delete this part?",
+            isPresented: $showingDeleteConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Delete Part", role: .destructive) {
+                onDelete()
+            }
+
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will remove the selected component from your base.")
         }
         .padding()
         .background(.regularMaterial)

@@ -15,6 +15,8 @@ struct BaseSceneView: UIViewRepresentable {
     func makeUIView(context: Context) -> SCNView {
 
         let view = SCNView()
+        
+        controller.sceneView = view
 
         view.scene = controller.scene
         view.allowsCameraControl = true

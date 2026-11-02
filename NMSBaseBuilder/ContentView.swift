@@ -75,6 +75,14 @@ struct ContentView: View {
                                 } catch {
                                     print("Rotation update failed: \(error)")
                                 }
+                            },
+                            onDelete: {
+                                do {
+                                    try controller.deleteSelectedPart()
+                                    print("part deleted")
+                                } catch {
+                                    print("Failed to delete part: \(error)")
+                                }
                             }
                         )
                         .padding()
@@ -86,7 +94,7 @@ struct ContentView: View {
 
                 let part = BasePart(
                     objectID: definition.objectID,
-                    position: [2, 3, 0],
+                    position: controller.spawnPositionInFrontOfCamera(),
                     up: [0, 1, 0],
                     at: [0, 0, 1],
                     timestamp: 0,

@@ -28,6 +28,11 @@ final class BaseSceneController {
     
     private(set) var project: BaseProject?
     private(set) var selectedNode: SCNNode?
+    private var undoStack: [BasePart] = []
+    private var redoStack: [BasePart] = []
+    
+    var canUndo: Bool { !undoStack.isEmpty }
+    var canRedo: Bool { !redoStack.isEmpty }
     
     var selectedPart: BasePart? {
         guard let selectedNode else {
@@ -51,6 +56,7 @@ final class BaseSceneController {
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
     private let meshLibrary = NMSMeshLibrary()
+    weak var sceneView: SCNView?
 
     init() {
         setupCamera()
@@ -373,5 +379,70 @@ final class BaseSceneController {
 
         // Automatically select the new component.
         selectNode(node)
+    }
+    
+    func spawnPositionInFrontOfCamera(distance: Float = 5) -> [Float] {
+
+        guard let camera = sceneView?.pointOfView else {
+            return [0, 0, 0]
+        }
+
+        let localPosition = SCNVector3(0, 0, -distance)
+
+        let worldPosition = camera.convertPosition(
+            localPosition,
+            to: nil
+        )
+
+        return [
+            worldPosition.x,
+            worldPosition.y,
+            worldPosition.z
+        ]
+    }
+    
+    func deleteSelectedPart() throws {
+
+        guard var project else {
+            throw ExportError.noProjectLoaded
+        }
+
+        guard let selectedNode,
+              let index = nodePartIndices[selectedNode] else {
+            return
+        }
+
+        // Remove the selected part from the project.
+        project.parts.remove(at: index)
+
+        // Remove its SceneKit node.
+        selectedNode.removeFromParentNode()
+
+        // Clear selection and highlighting state.
+        selectNode(nil)
+
+        // Remove the deleted node from our mappings.
+        nodePartIndices.removeValue(forKey: selectedNode)
+        partNodes.removeValue(forKey: index)
+
+        // Rebuild indices for the remaining nodes.
+        var updatedNodePartIndices: [SCNNode: Int] = [:]
+        var updatedPartNodes: [Int: SCNNode] = [:]
+
+        for (oldIndex, node) in partNodes {
+
+            let newIndex = oldIndex > index
+                ? oldIndex - 1
+                : oldIndex
+
+            updatedNodePartIndices[node] = newIndex
+            updatedPartNodes[newIndex] = node
+        }
+
+        nodePartIndices = updatedNodePartIndices
+        partNodes = updatedPartNodes
+
+        // Commit the updated project.
+        self.project = project
     }
 }
