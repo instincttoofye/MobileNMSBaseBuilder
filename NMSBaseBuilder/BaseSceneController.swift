@@ -58,46 +58,14 @@ final class BaseSceneController {
     }
 
     private let renderer = BaseSceneRenderer()
+    private let environment = BaseSceneEnvironment()
     weak var sceneView: SCNView?
 
     init() {
-        setupCamera()
-        setupLighting()
+        environment.setup(in: scene)
         loadLampPost()
     }
-
-    private func setupCamera() {
-
-        let cameraNode = SCNNode()
-        cameraNode.name = "MainCamera"
-        cameraNode.camera = SCNCamera()
-
-        cameraNode.position = SCNVector3(10, 10, 20)
-        cameraNode.look(at: SCNVector3(0, 3, 0))
-
-        scene.rootNode.addChildNode(cameraNode)
-    }
-
-    private func setupLighting() {
-
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light?.type = .omni
-        lightNode.position = SCNVector3(5, 15, 10)
-
-        scene.rootNode.addChildNode(lightNode)
-
-        let ambientNode = SCNNode()
-        ambientNode.light = SCNLight()
-        ambientNode.light?.type = .ambient
-        ambientNode.light?.color = UIColor(
-            white: 0.4,
-            alpha: 1
-        )
-
-        scene.rootNode.addChildNode(ambientNode)
-    }
-
+    
     private func loadLampPost() {
 
         guard let url = Bundle.main.url(
