@@ -29,51 +29,6 @@ final class BaseProjectEditor {
         self.project = project
     }
     
-    func updatePartPosition(
-        at index: Int,
-        position: [Float]
-    ) throws {
-
-        guard position.count == 3,
-              position.allSatisfy(\.isFinite) else {
-            throw EditError.invalidPosition
-        }
-
-        guard var project,
-              project.parts.indices.contains(index) else {
-            throw EditError.invalidPartIndex
-        }
-
-        project.parts[index].position = position
-
-        self.project = project
-    }
-    
-    func updatePartRotation(
-        at index: Int,
-        angles: NMSEulerConverter.EulerAngles
-    ) throws {
-
-        guard var project,
-              project.parts.indices.contains(index) else {
-            throw EditError.invalidPartIndex
-        }
-
-        var part = project.parts[index]
-
-        let originalTransform = try part.transform
-
-        let updatedTransform = NMSEulerConverter.applyEulerAngles(
-            angles,
-            to: originalTransform
-        )
-
-        part.updateTransform(updatedTransform)
-
-        project.parts[index] = part
-        self.project = project
-    }
-    
     func preparePositionUpdate(
         at index: Int,
         position: [Float]
@@ -109,5 +64,29 @@ final class BaseProjectEditor {
         project.parts[index] = part
 
         self.project = project
+    }
+    
+    func prepareRotationUpdate(
+        at index: Int,
+        angles: NMSEulerConverter.EulerAngles
+    ) throws -> BasePart {
+
+        guard let project,
+              project.parts.indices.contains(index) else {
+            throw EditError.invalidPartIndex
+        }
+
+        var part = project.parts[index]
+
+        let originalTransform = try part.transform
+
+        let updatedTransform = NMSEulerConverter.applyEulerAngles(
+            angles,
+            to: originalTransform
+        )
+
+        part.updateTransform(updatedTransform)
+
+        return part
     }
 }

@@ -265,35 +265,26 @@ final class BaseSceneController {
             throw PositionUpdateError.missingSceneNode
         }
 
-        guard let project,
-              project.parts.indices.contains(index) else {
-            throw PositionUpdateError.invalidPartIndex
+        guard let previousProject = project else {
+            throw ExportError.noProjectLoaded
         }
 
-        // Prepare the updated transform before committing anything.
-        let part = project.parts[index]
-
-        let originalTransform = try part.transform
-
-        let updatedTransform = NMSEulerConverter.applyEulerAngles(
-            angles,
-            to: originalTransform
-        )
-
-        let matrix = try NMSCoordinateConverter.createMatrix(
-            from: updatedTransform
-        )
-
-        // All potentially throwing preparation has succeeded.
-        recordSnapshot(project)
-
-        // Commit the project mutation.
-        try projectEditor.updatePartRotation(
+        let updatedPart = try projectEditor.prepareRotationUpdate(
             at: index,
             angles: angles
         )
 
-        // Synchronize SceneKit.
+        let matrix = try NMSCoordinateConverter.createMatrix(
+            from: updatedPart.transform
+        )
+
+        try projectEditor.commitPartUpdate(
+            at: index,
+            part: updatedPart
+        )
+
+        recordSnapshot(previousProject)
+
         node.simdTransform = matrix
     }
     
