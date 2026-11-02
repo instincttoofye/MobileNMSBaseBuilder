@@ -28,8 +28,8 @@ final class BaseSceneController {
     
     private(set) var project: BaseProject?
     private(set) var selectedNode: SCNNode?
-    private var undoStack: [BasePart] = []
-    private var redoStack: [BasePart] = []
+    private var undoStack: [BaseProject] = []
+    private var redoStack: [BaseProject] = []
     
     var canUndo: Bool { !undoStack.isEmpty }
     var canRedo: Bool { !redoStack.isEmpty }
@@ -175,7 +175,7 @@ final class BaseSceneController {
             from: transform
         )
 
-       
+        recordSnapshot()
         project.parts[index] = part
         self.project = project
 
@@ -212,7 +212,7 @@ final class BaseSceneController {
         originalEmissions.removeAll()
     }
     
-    func loadProject(_ newProject: BaseProject) throws {
+    func loadProject(_ newProject: BaseProject, resetHistory: Bool = true) throws {
 
         var newNodes: [(index: Int, node: SCNNode)] = []
 
@@ -252,6 +252,11 @@ final class BaseSceneController {
         }
 
         print("Loaded \(newProject.parts.count) NMS parts")
+        
+        if resetHistory {
+            undoStack.removeAll()
+            redoStack.removeAll()
+        }
     }
     
     func updatePartRotation(
@@ -289,6 +294,7 @@ final class BaseSceneController {
         part.updateTransform(updatedTransform)
 
         // Update our source of truth.
+        recordSnapshot()
         project.parts[index] = part
         self.project = project
 
@@ -368,6 +374,7 @@ final class BaseSceneController {
         node.addChildNode(meshNode)
 
         // Update our source of truth.
+        recordSnapshot()
         project.parts.append(part)
         self.project = project
 
@@ -413,6 +420,7 @@ final class BaseSceneController {
         }
 
         // Remove the selected part from the project.
+        recordSnapshot()
         project.parts.remove(at: index)
 
         // Remove its SceneKit node.
@@ -444,5 +452,36 @@ final class BaseSceneController {
 
         // Commit the updated project.
         self.project = project
+    }
+    
+    private func recordSnapshot() {
+        guard let project else { return }
+
+        undoStack.append(project)
+        redoStack.removeAll()
+    }
+    
+    func undo() throws {
+        guard let previousProject = undoStack.last,
+              let currentProject = project else {
+            return
+        }
+
+        try loadProject(previousProject, resetHistory: false)
+
+        undoStack.removeLast()
+        redoStack.append(currentProject)
+    }
+    
+    func redo() throws {
+        guard let nextProject = redoStack.last,
+              let currentProject = project else {
+            return
+        }
+
+        try loadProject(nextProject, resetHistory: false)
+
+        redoStack.removeLast()
+        undoStack.append(currentProject)
     }
 }

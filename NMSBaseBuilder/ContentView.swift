@@ -45,6 +45,31 @@ struct ContentView: View {
             Button("Add Part") {
                 isShowingPartBrowser = true
             }
+            
+            HStack(spacing: 16) {
+
+                Button {
+                    do {
+                        try controller.undo()
+                    } catch {
+                        print("Undo failed: \(error)")
+                    }
+                } label: {
+                    Label("Undo", systemImage: "arrow.uturn.backward")
+                }
+                .disabled(!controller.canUndo)
+
+                Button {
+                    do {
+                        try controller.redo()
+                    } catch {
+                        print("Redo failed: \(error)")
+                    }
+                } label: {
+                    Label("Redo", systemImage: "arrow.uturn.forward")
+                }
+                .disabled(!controller.canRedo)
+            }
 
             BaseSceneView(controller: controller)
                 .overlay(alignment: .bottom) {
