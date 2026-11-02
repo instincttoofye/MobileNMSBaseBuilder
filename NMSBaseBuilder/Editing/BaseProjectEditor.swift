@@ -73,4 +73,41 @@ final class BaseProjectEditor {
         project.parts[index] = part
         self.project = project
     }
+    
+    func preparePositionUpdate(
+        at index: Int,
+        position: [Float]
+    ) throws -> BasePart {
+
+        guard position.count == 3,
+              position.allSatisfy(\.isFinite) else {
+            throw EditError.invalidPosition
+        }
+
+        guard let project,
+              project.parts.indices.contains(index) else {
+            throw EditError.invalidPartIndex
+        }
+
+        var part = project.parts[index]
+
+        part.position = position
+
+        return part
+    }
+    
+    func commitPartUpdate(
+        at index: Int,
+        part: BasePart
+    ) throws {
+
+        guard var project,
+              project.parts.indices.contains(index) else {
+            throw EditError.invalidPartIndex
+        }
+
+        project.parts[index] = part
+
+        self.project = project
+    }
 }

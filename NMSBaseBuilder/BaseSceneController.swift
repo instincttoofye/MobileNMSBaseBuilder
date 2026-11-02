@@ -157,33 +157,26 @@ final class BaseSceneController {
             throw PositionUpdateError.missingSceneNode
         }
 
-        // Validate the requested edit before modifying anything.
-        guard position.count == 3,
-              position.allSatisfy(\.isFinite),
-              let project,
-              project.parts.indices.contains(index) else {
-            throw PositionUpdateError.invalidPosition
+        guard let previousProject = project else {
+            throw ExportError.noProjectLoaded
         }
 
-        var updatedPart = project.parts[index]
-        updatedPart.position = position
-
-        let transform = try updatedPart.transform
-
-        let matrix = try NMSCoordinateConverter.createMatrix(
-            from: transform
-        )
-
-        // All potentially throwing preparation has succeeded.
-        recordSnapshot()
-
-        // Commit the data change.
-        try projectEditor.updatePartPosition(
+        let updatedPart = try projectEditor.preparePositionUpdate(
             at: index,
             position: position
         )
 
-        // Synchronize the SceneKit representation.
+        let matrix = try NMSCoordinateConverter.createMatrix(
+            from: updatedPart.transform
+        )
+
+        try projectEditor.commitPartUpdate(
+            at: index,
+            part: updatedPart
+        )
+
+        recordSnapshot(previousProject)
+
         node.simdTransform = matrix
     }
     
@@ -292,7 +285,7 @@ final class BaseSceneController {
         )
 
         // All potentially throwing preparation has succeeded.
-        recordSnapshot()
+        recordSnapshot(project)
 
         // Commit the project mutation.
         try projectEditor.updatePartRotation(
@@ -376,7 +369,7 @@ final class BaseSceneController {
         node.addChildNode(meshNode)
 
         // Update our source of truth.
-        recordSnapshot()
+        recordSnapshot(project)
         project.parts.append(part)
         projectEditor.loadProject(project)
 
@@ -422,7 +415,7 @@ final class BaseSceneController {
         }
 
         // Remove the selected part from the project.
-        recordSnapshot()
+        recordSnapshot(project)
         project.parts.remove(at: index)
 
         // Remove its SceneKit node.
@@ -456,10 +449,8 @@ final class BaseSceneController {
         projectEditor.loadProject(project)
     }
     
-    private func recordSnapshot() {
-        guard let project else { return }
-
-        historyManager.record(project)
+    private func recordSnapshot(_ snapshot: BaseProject) {
+        historyManager.record(snapshot)
     }
     
     func undo() throws {
