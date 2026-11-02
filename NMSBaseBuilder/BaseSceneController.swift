@@ -13,16 +13,6 @@ import simd
 @MainActor
 @Observable
 final class BaseSceneController {
-    
-    enum PositionUpdateError: Error {
-        case invalidPosition
-        case invalidPartIndex
-        case missingSceneNode
-    }
-    
-    enum ExportError: Error {
-        case noProjectLoaded
-    }
 
     let scene = SCNScene()
     
@@ -112,7 +102,7 @@ final class BaseSceneController {
     ) throws {
 
         guard let node = renderer.node(at: index) else {
-            throw PositionUpdateError.missingSceneNode
+            throw SceneEditingError.missingSceneNode
         }
 
         guard let previousProject = project else {
@@ -155,8 +145,8 @@ final class BaseSceneController {
     }
     
     private func clearProjectNodes() {
-        renderer.clearNodes()
         selectionManager.reset()
+        renderer.clearNodes()
     }
     
     func loadProject(_ newProject: BaseProject, resetHistory: Bool = true) throws {
@@ -195,7 +185,7 @@ final class BaseSceneController {
     ) throws {
 
         guard let node = renderer.node(at: index) else {
-            throw PositionUpdateError.missingSceneNode
+            throw SceneEditingError.missingSceneNode
         }
 
         guard let previousProject = project else {
