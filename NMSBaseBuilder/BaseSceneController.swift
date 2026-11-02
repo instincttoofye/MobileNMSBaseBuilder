@@ -50,11 +50,8 @@ final class BaseSceneController {
             return nil
         }
 
-        return nodePartIndices[selectedNode]
-    }
-    
-    private var nodePartIndices: [SCNNode: Int] = [:]
-    private var partNodes: [Int: SCNNode] = [:]
+        return renderer.index(for: selectedNode)    }
+
     private var originalEmissions: [ObjectIdentifier: Any] = [:]
     private let defaultColor = UIColor.systemTeal
     private let selectedColor = UIColor.systemOrange
@@ -139,7 +136,7 @@ final class BaseSceneController {
     
     func part(for node: SCNNode) -> BasePart? {
 
-        guard let index = nodePartIndices[node],
+        guard let index = renderer.index(for: node),
               let project,
               project.parts.indices.contains(index) else {
             return nil
@@ -153,7 +150,7 @@ final class BaseSceneController {
         position: [Float]
     ) throws {
 
-        guard let node = partNodes[index] else {
+        guard let node = renderer.node(at: index) else {
             throw PositionUpdateError.missingSceneNode
         }
 
@@ -197,16 +194,8 @@ final class BaseSceneController {
     }
     
     private func clearProjectNodes() {
-
-        for node in partNodes.values {
-            node.removeFromParentNode()
-        }
-
-        partNodes.removeAll()
-        nodePartIndices.removeAll()
-
+        renderer.clearNodes()
         selectedNode = nil
-        
         originalEmissions.removeAll()
     }
     
@@ -228,8 +217,7 @@ final class BaseSceneController {
 
         for entry in newNodes {
 
-            nodePartIndices[entry.node] = entry.index
-            partNodes[entry.index] = entry.node
+            renderer.register(entry.node, at: entry.index)
 
             scene.rootNode.addChildNode(entry.node)
         }
@@ -246,7 +234,7 @@ final class BaseSceneController {
         angles: NMSEulerConverter.EulerAngles
     ) throws {
 
-        guard let node = partNodes[index] else {
+        guard let node = renderer.node(at: index) else {
             throw PositionUpdateError.missingSceneNode
         }
 
@@ -274,17 +262,7 @@ final class BaseSceneController {
     }
     
     func componentNode(for hitNode: SCNNode) -> SCNNode? {
-        var currentNode: SCNNode? = hitNode
-
-        while let node = currentNode {
-            if nodePartIndices[node] != nil {
-                return node
-            }
-
-            currentNode = node.parent
-        }
-
-        return nil
+        renderer.componentNode(for: hitNode)
     }
     
     private func setHighlight(
@@ -335,9 +313,7 @@ final class BaseSceneController {
         // Preserve the previous project for Undo.
         recordSnapshot(previousProject)
 
-        // Register the SceneKit node.
-        nodePartIndices[node] = index
-        partNodes[index] = node
+        renderer.register(node, at: index)
 
         scene.rootNode.addChildNode(node)
 
@@ -372,42 +348,21 @@ final class BaseSceneController {
         }
 
         guard let selectedNode,
-              let index = nodePartIndices[selectedNode] else {
+              let index = renderer.index(for: selectedNode) else {
             return
         }
 
-        // Commit the model deletion first.
+        // Commit model deletion.
         try projectEditor.commitPartDeletion(at: index)
 
-        // Preserve the previous state for Undo.
+        // Preserve Undo history.
         recordSnapshot(previousProject)
 
-        // Remove the corresponding SceneKit node.
-        selectedNode.removeFromParentNode()
-
-        // Clear selection and highlighting.
+        // Restore the selected node's original material appearance.
         selectNode(nil)
 
-        // Remove the deleted node from our mappings.
-        nodePartIndices.removeValue(forKey: selectedNode)
-        partNodes.removeValue(forKey: index)
-
-        // Rebuild indices for the remaining nodes.
-        var updatedNodePartIndices: [SCNNode: Int] = [:]
-        var updatedPartNodes: [Int: SCNNode] = [:]
-
-        for (oldIndex, node) in partNodes {
-
-            let newIndex = oldIndex > index
-                ? oldIndex - 1
-                : oldIndex
-
-            updatedNodePartIndices[node] = newIndex
-            updatedPartNodes[newIndex] = node
-        }
-
-        nodePartIndices = updatedNodePartIndices
-        partNodes = updatedPartNodes
+        // Remove the node and update all remaining indices.
+        renderer.removeNode(at: index)
     }
     
     private func recordSnapshot(_ snapshot: BaseProject) {

@@ -14,6 +14,8 @@ import BaseCore
 final class BaseSceneRenderer {
 
     private let meshLibrary = NMSMeshLibrary()
+    private var nodePartIndices: [SCNNode: Int] = [:]
+    private var partNodes: [Int: SCNNode] = [:]
 
     func createNode(for part: BasePart) throws -> SCNNode {
 
@@ -35,5 +37,66 @@ final class BaseSceneRenderer {
         node.addChildNode(meshNode)
 
         return node
+    }
+    
+    func node(at index: Int) -> SCNNode? {
+        partNodes[index]
+    }
+
+    func index(for node: SCNNode) -> Int? {
+        nodePartIndices[node]
+    }
+
+    func register(_ node: SCNNode, at index: Int) {
+        nodePartIndices[node] = index
+        partNodes[index] = node
+    }
+
+    func componentNode(for hitNode: SCNNode) -> SCNNode? {
+        var currentNode: SCNNode? = hitNode
+
+        while let node = currentNode {
+            if nodePartIndices[node] != nil {
+                return node
+            }
+
+            currentNode = node.parent
+        }
+
+        return nil
+    }
+
+    func clearNodes() {
+        for node in partNodes.values {
+            node.removeFromParentNode()
+        }
+
+        partNodes.removeAll()
+        nodePartIndices.removeAll()
+    }
+
+    func removeNode(at index: Int) {
+        guard let node = partNodes.removeValue(forKey: index) else {
+            return
+        }
+
+        nodePartIndices.removeValue(forKey: node)
+        node.removeFromParentNode()
+
+        // Reindex remaining components.
+        var updatedPartNodes: [Int: SCNNode] = [:]
+        var updatedNodePartIndices: [SCNNode: Int] = [:]
+
+        for (oldIndex, remainingNode) in partNodes {
+            let newIndex = oldIndex > index
+                ? oldIndex - 1
+                : oldIndex
+
+            updatedPartNodes[newIndex] = remainingNode
+            updatedNodePartIndices[remainingNode] = newIndex
+        }
+
+        partNodes = updatedPartNodes
+        nodePartIndices = updatedNodePartIndices
     }
 }
