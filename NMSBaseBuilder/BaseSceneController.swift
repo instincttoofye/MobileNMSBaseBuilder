@@ -31,7 +31,11 @@ final class BaseSceneController {
     var project: BaseProject? {
         projectEditor.project
     }
-    private(set) var selectedNode: SCNNode?
+    private let selectionManager = BaseSelectionManager()
+
+    var selectedNode: SCNNode? {
+        selectionManager.selectedNode
+    }
     private let historyManager = BaseHistoryManager()
     
     var canUndo: Bool { historyManager.canUndo }
@@ -49,12 +53,10 @@ final class BaseSceneController {
         guard let selectedNode else {
             return nil
         }
+        
+        return renderer.index(for: selectedNode)
+    }
 
-        return renderer.index(for: selectedNode)    }
-
-    private var originalEmissions: [ObjectIdentifier: Any] = [:]
-    private let defaultColor = UIColor.systemTeal
-    private let selectedColor = UIColor.systemOrange
     private let renderer = BaseSceneRenderer()
     weak var sceneView: SCNView?
 
@@ -122,16 +124,7 @@ final class BaseSceneController {
     }
     
     func selectNode(_ node: SCNNode?) {
-
-        if let selectedNode {
-            setHighlight(false, for: selectedNode)
-        }
-
-        selectedNode = node
-
-        if let node {
-            setHighlight(true, for: node)
-        }
+        selectionManager.selectNode(node)
     }
     
     func part(for node: SCNNode) -> BasePart? {
@@ -195,8 +188,7 @@ final class BaseSceneController {
     
     private func clearProjectNodes() {
         renderer.clearNodes()
-        selectedNode = nil
-        originalEmissions.removeAll()
+        selectionManager.reset()
     }
     
     func loadProject(_ newProject: BaseProject, resetHistory: Bool = true) throws {
@@ -263,40 +255,6 @@ final class BaseSceneController {
     
     func componentNode(for hitNode: SCNNode) -> SCNNode? {
         renderer.componentNode(for: hitNode)
-    }
-    
-    private func setHighlight(
-        _ highlighted: Bool,
-        for node: SCNNode
-    ) {
-        node.enumerateHierarchy { child, _ in
-            guard let geometry = child.geometry else {
-                return
-            }
-
-            for material in geometry.materials {
-
-                let identifier = ObjectIdentifier(material)
-
-                if highlighted {
-
-                    if originalEmissions[identifier] == nil {
-                        originalEmissions[identifier] =
-                            material.emission.contents ?? UIColor.black
-                    }
-
-                    material.emission.contents = UIColor.systemOrange
-
-                } else {
-
-                    if let original = originalEmissions.removeValue(
-                        forKey: identifier
-                    ) {
-                        material.emission.contents = original
-                    }
-                }
-            }
-        }
     }
     
     func addPart(_ part: BasePart) throws {
