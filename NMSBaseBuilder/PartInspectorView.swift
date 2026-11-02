@@ -18,12 +18,12 @@ struct PartInspectorView: View {
     let onRotationChange: (NMSEulerConverter.EulerAngles) -> Void
     let onDelete: () -> Void
 
-    @State private var xPosition = ""
-    @State private var yPosition = ""
-    @State private var zPosition = ""
-    @State private var yawDegrees = ""
-    @State private var pitchDegrees = ""
-    @State private var rollDegrees = ""
+    @State private var xPosition: String = ""
+    @State private var yPosition: String = ""
+    @State private var zPosition: String = ""
+    @State private var yawDegrees: String = ""
+    @State private var pitchDegrees: String = ""
+    @State private var rollDegrees: String = ""
     @State private var showingDeleteConfirmation: Bool = false
 
     var body: some View {

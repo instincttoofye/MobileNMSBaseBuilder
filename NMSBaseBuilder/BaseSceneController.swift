@@ -28,11 +28,10 @@ final class BaseSceneController {
     
     private(set) var project: BaseProject?
     private(set) var selectedNode: SCNNode?
-    private var undoStack: [BaseProject] = []
-    private var redoStack: [BaseProject] = []
+    private let historyManager = BaseHistoryManager()
     
-    var canUndo: Bool { !undoStack.isEmpty }
-    var canRedo: Bool { !redoStack.isEmpty }
+    var canUndo: Bool { historyManager.canUndo }
+    var canRedo: Bool { historyManager.canRedo }
     
     var selectedPart: BasePart? {
         guard let selectedNode else {
@@ -254,8 +253,7 @@ final class BaseSceneController {
         print("Loaded \(newProject.parts.count) NMS parts")
         
         if resetHistory {
-            undoStack.removeAll()
-            redoStack.removeAll()
+            historyManager.reset()
         }
     }
     
@@ -457,31 +455,28 @@ final class BaseSceneController {
     private func recordSnapshot() {
         guard let project else { return }
 
-        undoStack.append(project)
-        redoStack.removeAll()
+        historyManager.record(project)
     }
     
     func undo() throws {
-        guard let previousProject = undoStack.last,
+        guard let previousProject = historyManager.previousProject(),
               let currentProject = project else {
             return
         }
 
         try loadProject(previousProject, resetHistory: false)
 
-        undoStack.removeLast()
-        redoStack.append(currentProject)
+        historyManager.commitUndo(currentProject: currentProject)
     }
     
     func redo() throws {
-        guard let nextProject = redoStack.last,
+        guard let nextProject = historyManager.nextProject(),
               let currentProject = project else {
             return
         }
 
         try loadProject(nextProject, resetHistory: false)
 
-        redoStack.removeLast()
-        undoStack.append(currentProject)
+        historyManager.commitRedo(currentProject: currentProject)
     }
 }
