@@ -26,7 +26,11 @@ final class BaseSceneController {
 
     let scene = SCNScene()
     
-    private(set) var project: BaseProject?
+    private let projectEditor = BaseProjectEditor()
+
+    var project: BaseProject? {
+        projectEditor.project
+    }
     private(set) var selectedNode: SCNNode?
     private let historyManager = BaseHistoryManager()
     
@@ -149,35 +153,37 @@ final class BaseSceneController {
         position: [Float]
     ) throws {
 
-        guard position.count == 3,
-              position.allSatisfy(\.isFinite) else {
-            throw PositionUpdateError.invalidPosition
-        }
-
-        guard var project,
-              project.parts.indices.contains(index) else {
-            throw PositionUpdateError.invalidPartIndex
-        }
-
         guard let node = partNodes[index] else {
             throw PositionUpdateError.missingSceneNode
         }
 
-        // Retrieve and modify the NMS component.
-        var part = project.parts[index]
-        part.position = position
+        // Validate the requested edit before modifying anything.
+        guard position.count == 3,
+              position.allSatisfy(\.isFinite),
+              let project,
+              project.parts.indices.contains(index) else {
+            throw PositionUpdateError.invalidPosition
+        }
 
-        // Rebuild its transformation matrix.
-        let transform = try part.transform
+        var updatedPart = project.parts[index]
+        updatedPart.position = position
+
+        let transform = try updatedPart.transform
 
         let matrix = try NMSCoordinateConverter.createMatrix(
             from: transform
         )
 
+        // All potentially throwing preparation has succeeded.
         recordSnapshot()
-        project.parts[index] = part
-        self.project = project
 
+        // Commit the data change.
+        try projectEditor.updatePartPosition(
+            at: index,
+            position: position
+        )
+
+        // Synchronize the SceneKit representation.
         node.simdTransform = matrix
     }
     
@@ -240,7 +246,7 @@ final class BaseSceneController {
         // Only replace the existing scene after every part succeeds.
         clearProjectNodes()
 
-        self.project = newProject
+        projectEditor.loadProject(newProject)
 
         for entry in newNodes {
 
@@ -262,39 +268,37 @@ final class BaseSceneController {
         angles: NMSEulerConverter.EulerAngles
     ) throws {
 
-        guard var project,
-              project.parts.indices.contains(index) else {
-            throw PositionUpdateError.invalidPartIndex
-        }
-
         guard let node = partNodes[index] else {
             throw PositionUpdateError.missingSceneNode
         }
 
-        // Retrieve the component we're modifying.
-        var part = project.parts[index]
+        guard let project,
+              project.parts.indices.contains(index) else {
+            throw PositionUpdateError.invalidPartIndex
+        }
 
-        // Extract its existing NMS transform.
+        // Prepare the updated transform before committing anything.
+        let part = project.parts[index]
+
         let originalTransform = try part.transform
 
-        // Apply the requested Euler angles.
         let updatedTransform = NMSEulerConverter.applyEulerAngles(
             angles,
             to: originalTransform
         )
 
-        // Build the updated SceneKit transformation matrix.
         let matrix = try NMSCoordinateConverter.createMatrix(
             from: updatedTransform
         )
 
-        // Update the component's stored NMS vectors.
-        part.updateTransform(updatedTransform)
-
-        // Update our source of truth.
+        // All potentially throwing preparation has succeeded.
         recordSnapshot()
-        project.parts[index] = part
-        self.project = project
+
+        // Commit the project mutation.
+        try projectEditor.updatePartRotation(
+            at: index,
+            angles: angles
+        )
 
         // Synchronize SceneKit.
         node.simdTransform = matrix
@@ -374,7 +378,7 @@ final class BaseSceneController {
         // Update our source of truth.
         recordSnapshot()
         project.parts.append(part)
-        self.project = project
+        projectEditor.loadProject(project)
 
         // Register the new component.
         nodePartIndices[node] = index
@@ -449,7 +453,7 @@ final class BaseSceneController {
         partNodes = updatedPartNodes
 
         // Commit the updated project.
-        self.project = project
+        projectEditor.loadProject(project)
     }
     
     private func recordSnapshot() {
