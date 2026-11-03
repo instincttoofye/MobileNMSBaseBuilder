@@ -17,6 +17,7 @@ final class BaseSceneController {
     let scene = SCNScene()
     
     private let projectEditor = BaseProjectEditor()
+    private let gizmo = BaseTranslationGizmo()
 
     var project: BaseProject? {
         projectEditor.project
@@ -82,7 +83,13 @@ final class BaseSceneController {
     }
     
     func selectNode(_ node: SCNNode?) {
+        gizmo.detach()
+        
         selectionManager.selectNode(node)
+        
+        if let node {
+            gizmo.attach(to: node, in: scene)
+        }
     }
     
     func part(for node: SCNNode) -> BasePart? {
@@ -126,6 +133,10 @@ final class BaseSceneController {
         recordSnapshot(previousProject)
 
         node.simdTransform = matrix
+        
+        if node === selectedNode {
+            gizmo.updatePosition(to: node)
+        }
     }
     
     func exportProject() throws -> Data {
@@ -145,6 +156,7 @@ final class BaseSceneController {
     }
     
     private func clearProjectNodes() {
+        gizmo.detach()
         selectionManager.reset()
         renderer.clearNodes()
     }
