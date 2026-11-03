@@ -16,6 +16,7 @@ struct PartInspectorView: View {
     
     let onPositionChange: ([Float]) -> Void
     let onRotationChange: (NMSEulerConverter.EulerAngles) -> Void
+    let onTranslation: (Int, Float) -> Void
     let onDelete: () -> Void
 
     @State private var xPosition: String = ""
@@ -25,10 +26,13 @@ struct PartInspectorView: View {
     @State private var pitchDegrees: String = ""
     @State private var rollDegrees: String = ""
     @State private var showingDeleteConfirmation: Bool = false
+    @State private var isExpanded: Bool = false
 
     var body: some View {
 
         VStack(alignment: .leading, spacing: 12) {
+
+            // MARK: - Header
 
             HStack {
 
@@ -40,69 +44,123 @@ struct PartInspectorView: View {
                 Text("#\(index)")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+
+                Button {
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        isExpanded.toggle()
+                    }
+                } label: {
+                    Image(
+                        systemName: isExpanded
+                            ? "chevron.down"
+                            : "chevron.up"
+                    )
+                    .foregroundStyle(.secondary)
+                    .frame(width: 32, height: 32)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
             }
 
-            Divider()
+            // MARK: - Expanded Controls
 
-            Text("POSITION")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            if isExpanded {
 
-            HStack(spacing: 12) {
+                Divider()
 
-                coordinateField(
-                    "X",
-                    text: $xPosition,
-                    axis: 0
-                )
+                ScrollView {
 
-                coordinateField(
-                    "Y",
-                    text: $yPosition,
-                    axis: 1
-                )
+                    VStack(alignment: .leading, spacing: 12) {
 
-                coordinateField(
-                    "Z",
-                    text: $zPosition,
-                    axis: 2
-                )
+                        // MARK: - Position
+
+                        Text("POSITION")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        HStack(spacing: 12) {
+
+                            coordinateField(
+                                "X",
+                                text: $xPosition,
+                                axis: 0
+                            )
+
+                            coordinateField(
+                                "Y",
+                                text: $yPosition,
+                                axis: 1
+                            )
+
+                            coordinateField(
+                                "Z",
+                                text: $zPosition,
+                                axis: 2
+                            )
+                        }
+
+                        // MARK: - Translation
+
+                        TranslationControlsView { axis, amount in
+                            onTranslation(axis, amount)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 8)
+
+                        Divider()
+
+                        // MARK: Rotation
+
+                        Text("ROTATION")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        HStack(spacing: 12) {
+
+                            rotationField(
+                                "Pitch",
+                                text: $pitchDegrees,
+                                axis: 0
+                            )
+
+                            rotationField(
+                                "Yaw",
+                                text: $yawDegrees,
+                                axis: 1
+                            )
+
+                            rotationField(
+                                "Roll",
+                                text: $rollDegrees,
+                                axis: 2
+                            )
+                        }
+
+                        // MARK: - Delete
+
+                        Button(role: .destructive) {
+                            showingDeleteConfirmation = true
+                        } label: {
+                            Label(
+                                "Delete Part",
+                                systemImage: "trash"
+                            )
+                            .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .frame(maxHeight: 240)
             }
-            
-            Divider()
-
-            Text("ROTATION")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            HStack(spacing: 12) {
-                rotationField(
-                    "Pitch",
-                    text: $pitchDegrees,
-                    axis: 0
-                )
-
-                rotationField(
-                    "Yaw",
-                    text: $yawDegrees,
-                    axis: 1
-                )
-
-                rotationField(
-                    "Roll",
-                    text: $rollDegrees,
-                    axis: 2
-                )
-            }
-            
-            Button(role: .destructive) {
-                showingDeleteConfirmation = true
-            } label: {
-                Label("Delete Part", systemImage: "trash")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.bordered)
         }
+        .padding(16)
+        .frame(maxWidth: .infinity)
+        .background(.regularMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+
+        // MARK: - Delete Confirmation
+
         .confirmationDialog(
             "Delete this part?",
             isPresented: $showingDeleteConfirmation,
@@ -113,16 +171,18 @@ struct PartInspectorView: View {
             }
 
             Button("Cancel", role: .cancel) {}
+
         } message: {
             Text("This will remove the selected component from your base.")
         }
-        .padding()
-        .background(.regularMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+
+        // MARK: - State Synchronization
+
         .onAppear {
             resetPositionFields()
             resetRotationFields()
         }
+
         .onChange(of: index) { _, _ in
             resetPositionFields()
             resetRotationFields()

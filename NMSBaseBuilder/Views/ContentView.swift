@@ -76,41 +76,64 @@ struct ContentView: View {
 
                     if let part = controller.selectedPart,
                        let index = controller.selectedPartIndex {
+                            
 
-                        PartInspectorView(
-                            part: part,
-                            index: index,
-                            onPositionChange: { newPosition in
+                            PartInspectorView(
+                                part: part,
+                                index: index,
 
-                                do {
-                                    try controller.updatePartPosition(
-                                        at: index,
-                                        position: newPosition
-                                    )
-                                } catch {
-                                    print("Failed to update position: \(error)")
+                                onPositionChange: { newPosition in
+                                    do {
+                                        try controller.updatePartPosition(
+                                            at: index,
+                                            position: newPosition
+                                        )
+                                    } catch {
+                                        print("Failed to update position: \(error)")
+                                    }
+                                },
+
+                                onRotationChange: { angles in
+                                    do {
+                                        try controller.updatePartRotation(
+                                            at: index,
+                                            angles: angles
+                                        )
+                                    } catch {
+                                        print("Rotation update failed: \(error)")
+                                    }
+                                },
+                                
+                                onTranslation: { axis, amount in
+
+                                    guard let currentPart = controller.selectedPart,
+                                          let currentIndex = controller.selectedPartIndex,
+                                          currentPart.position.count == 3,
+                                          (0..<3).contains(axis) else {
+                                        return
+                                    }
+
+                                    var position = currentPart.position
+                                    position[axis] += amount
+
+                                    do {
+                                        try controller.updatePartPosition(
+                                            at: currentIndex,
+                                            position: position
+                                        )
+                                    } catch {
+                                        print("Translation failed: \(error)")
+                                    }
+                                },
+
+                                onDelete: {
+                                    do {
+                                        try controller.deleteSelectedPart()
+                                    } catch {
+                                        print("Failed to delete part: \(error)")
+                                    }
                                 }
-                            },
-                            onRotationChange: { angles in
-                                do {
-                                    try controller.updatePartRotation(
-                                        at: index,
-                                        angles: angles
-                                    )
-                                } catch {
-                                    print("Rotation update failed: \(error)")
-                                }
-                            },
-                            onDelete: {
-                                do {
-                                    try controller.deleteSelectedPart()
-                                    print("part deleted")
-                                } catch {
-                                    print("Failed to delete part: \(error)")
-                                }
-                            }
-                        )
-                        .padding()
+                            )
                     }
                 }
         }
