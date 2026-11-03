@@ -139,6 +139,44 @@ final class BaseSceneController {
         }
     }
     
+    func previewPartPosition(_ position: [Float]) {
+
+        guard let selectedNode,
+              position.count == 3,
+              position.allSatisfy(\.isFinite) else {
+            return
+        }
+
+        selectedNode.simdPosition = SIMD3<Float>(
+            position[0],
+            position[1],
+            position[2]
+        )
+
+        gizmo.updatePosition(to: selectedNode)
+    }
+
+    func cancelPartPositionPreview() {
+
+        guard let selectedNode,
+              let selectedPart else {
+            return
+        }
+
+        do {
+            let matrix = try NMSCoordinateConverter.createMatrix(
+                from: selectedPart.transform
+            )
+
+            selectedNode.simdTransform = matrix
+
+            gizmo.updatePosition(to: selectedNode)
+
+        } catch {
+            print("Failed to restore drag preview: \(error)")
+        }
+    }
+    
     func exportProject() throws -> Data {
 
         guard let project else {
