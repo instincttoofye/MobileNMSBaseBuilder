@@ -3,6 +3,8 @@ import SwiftUI
 struct TranslationControlsView: View {
 
     let onMove: (Int, Float) -> Void
+    
+    @State private var stepSize: Float = 1.0
 
     var body: some View {
         VStack(spacing: 10) {
@@ -10,7 +12,17 @@ struct TranslationControlsView: View {
             Text("TRANSLATE")
                 .font(.caption)
                 .fontWeight(.bold)
-                .foregroundStyle(.white)
+                .foregroundStyle(.secondary)
+            
+            Picker("Movement Step", selection: $stepSize) {
+                Text("Fine")
+                    .tag(Float(0.1))
+                Text("Medium")
+                    .tag(Float(1.0))
+                Text("Coarse")
+                    .tag(Float(5.0))
+            }
+            .pickerStyle(.segmented)
 
             HStack(spacing: 12) {
                 axisControls("X", axis: 0, color: .red)
@@ -19,7 +31,6 @@ struct TranslationControlsView: View {
             }
         }
         .padding(12)
-        .background(.black.opacity(0.85))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .fixedSize()
     }
@@ -39,7 +50,7 @@ struct TranslationControlsView: View {
 
             Button {
                 print("Translation button tapped: \(label)+")
-                onMove(axis, 1)
+                onMove(axis, stepSize)
             } label: {
                 Image(systemName: "plus")
                     .frame(width: 38, height: 32)
@@ -47,7 +58,7 @@ struct TranslationControlsView: View {
 
             Button {
                 print("Translation button tapped: \(label)-")
-                onMove(axis, -1)
+                onMove(axis, -stepSize)
             } label: {
                 Image(systemName: "minus")
                     .frame(width: 38, height: 32)
