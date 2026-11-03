@@ -55,8 +55,7 @@ struct BaseSceneView: UIViewRepresentable {
 
         let controller: BaseSceneController
         private var activeGizmoAxis: String?
-        private var dragStartPosition: SIMD3<Float>?
-        private var dragStartLocation: CGPoint?
+        private var dragSession: GizmoDragSession?
 
         init(controller: BaseSceneController) {
             self.controller = controller
@@ -168,41 +167,52 @@ struct BaseSceneView: UIViewRepresentable {
 
             case .began:
 
-                guard activeGizmoAxis != nil,
+                guard let axisName = activeGizmoAxis,
+                      let axis = worldAxis(axisName),
+                      let node = controller.selectedNode,
+                      let index = controller.selectedPartIndex,
                       let part = controller.selectedPart,
                       part.position.count == 3 else {
                     return
                 }
 
-                dragStartPosition = SIMD3<Float>(
-                    part.position[0],
-                    part.position[1],
-                    part.position[2]
+                dragSession = GizmoDragSession(
+                    node: node,
+                    partIndex: index,
+                    axis: axis,
+                    startPosition: SIMD3<Float>(
+                        part.position[0],
+                        part.position[1],
+                        part.position[2]
+                    ),
+                    startTransform: node.simdTransform
                 )
-
-                dragStartLocation = gesture.location(in: view)
 
             case .changed:
 
-                guard let axisName = activeGizmoAxis,
-                      let axis = worldAxis(axisName),
-                      let origin = dragStartPosition,
-                      dragStartLocation != nil else {
+                guard let session = dragSession else {
+                    return
+                }
+
+                guard controller.selectedNode === session.node,
+                      controller.selectedPartIndex == session.partIndex else {
+                    session.node.simdTransform = session.startTransform
+                    dragSession = nil
                     return
                 }
 
                 let translation = gesture.translation(in: view)
 
                 guard let distance = projectedAxisMovement(
-                    axis: axis,
-                    origin: origin,
+                    axis: session.axis,
+                    origin: session.startPosition,
                     screenTranslation: translation,
                     in: view
                 ) else {
                     return
                 }
 
-                let newPosition = origin + axis * distance
+                let newPosition = session.startPosition + session.axis * distance
 
                 controller.previewPartPosition([
                     newPosition.x,
@@ -213,28 +223,30 @@ struct BaseSceneView: UIViewRepresentable {
             case .ended:
 
                 defer {
+                    dragSession = nil
                     activeGizmoAxis = nil
-                    dragStartPosition = nil
-                    dragStartLocation = nil
                 }
 
-                guard dragStartPosition != nil,
-                      let selectedNode = controller.selectedNode,
-                      let index = controller.selectedPartIndex else {
+                guard let session = dragSession else {
                     return
                 }
 
-                let finalPosition = selectedNode.simdPosition
-                
-                if let origin = dragStartPosition,
-                   simd_length(finalPosition - origin) < 0.00001 {
+                guard controller.selectedNode === session.node,
+                      controller.selectedPartIndex == session.partIndex else {
+                    session.node.simdTransform = session.startTransform
+                    return
+                }
+
+                let finalPosition = session.node.simdPosition
+
+                guard simd_length(finalPosition - session.startPosition) >= 0.00001 else {
                     controller.cancelPartPositionPreview()
                     return
                 }
 
                 do {
                     try controller.updatePartPosition(
-                        at: index,
+                        at: session.partIndex,
                         position: [
                             finalPosition.x,
                             finalPosition.y,
@@ -245,14 +257,15 @@ struct BaseSceneView: UIViewRepresentable {
                     print("Failed to commit gizmo drag: \(error)")
                     controller.cancelPartPositionPreview()
                 }
-
             case .cancelled, .failed:
 
-                controller.cancelPartPositionPreview()
+                if let session = dragSession {
+                    session.node.simdTransform = session.startTransform
+                    controller.cancelPartPositionPreview()
+                }
 
+                dragSession = nil
                 activeGizmoAxis = nil
-                dragStartPosition = nil
-                dragStartLocation = nil
 
             default:
                 break
