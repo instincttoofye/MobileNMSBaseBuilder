@@ -22,12 +22,12 @@ struct NMSPartBrowserView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(NMSPartCategory.allCases) { category in
+                ForEach(NMSPartCatalog.categories, id: \.self) { category in
 
                     let parts = NMSPartCatalog.parts(in: category)
 
                     if !parts.isEmpty {
-                        Section(category.rawValue) {
+                        Section(category) {
 
                             ForEach(parts) { part in
                                 Button {

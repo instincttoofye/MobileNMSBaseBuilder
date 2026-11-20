@@ -12,19 +12,13 @@
 
 import Foundation
 
-enum NMSPartCategory: String, CaseIterable, Identifiable {
-    case structural = "Structural"
-    case decoration = "Decoration"
-    case technology = "Technology"
-    case shapes = "Shapes"
-
-    var id: String { rawValue }
-}
-
-struct NMSPartDefinition: Identifiable {
+struct NMSPartDefinition: Codable, Identifiable {
     let objectID: String
     let name: String
-    let category: NMSPartCategory
+    let category: String
+    let subcategory: String?
+    let modelCategory: String?
+    let meshPath: String?
 
     var id: String { objectID }
 }
