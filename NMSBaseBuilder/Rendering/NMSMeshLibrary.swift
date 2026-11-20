@@ -21,6 +21,37 @@ final class NMSMeshLibrary {
     ]
 
     func createNode(for objectID: String) -> SCNNode {
+        
+        if objectID == "^ABAND_BARREL" {
+
+            guard let url = Bundle.main.url(
+                forResource: "ABAND_BARREL",
+                withExtension: "usdz"
+            ) else {
+                print("USDZ asset not found")
+                return createPlaceholder()
+            }
+
+            do {
+                let scene = try SCNScene(
+                    url: url,
+                    options: nil
+                )
+
+                let meshNode = SCNNode()
+
+                for child in scene.rootNode.childNodes {
+                    meshNode.addChildNode(child.clone())
+                }
+
+                print("Industrial Barrel USDZ loaded")
+                return meshNode
+
+            } catch {
+                print("USDZ loading failed: \(error)")
+                return createPlaceholder()
+            }
+        }
 
         guard let assetName = meshRegistry[objectID] else {
             return createPlaceholder()
