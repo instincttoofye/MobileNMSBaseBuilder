@@ -18,13 +18,19 @@ struct NMSPartBrowserView: View {
     @Environment(\.dismiss) private var dismiss
 
     let onSelectPart: (NMSPartDefinition) -> Void
+    
+    @State private var searchText: String = ""
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(NMSPartCatalog.categories, id: \.self) { category in
 
-                    let parts = NMSPartCatalog.parts(in: category)
+                    let parts = NMSPartCatalog.parts(in: category).filter {
+                        searchText.isEmpty ||
+                        $0.name.localizedCaseInsensitiveContains(searchText) ||
+                        $0.objectID.localizedCaseInsensitiveContains(searchText)
+                    }
 
                     if !parts.isEmpty {
                         Section(category) {
@@ -47,6 +53,10 @@ struct NMSPartBrowserView: View {
                     }
                 }
             }
+            .searchable(
+                text: $searchText,
+                prompt: "Search building parts"
+            )
             .navigationTitle("Add Building Part")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

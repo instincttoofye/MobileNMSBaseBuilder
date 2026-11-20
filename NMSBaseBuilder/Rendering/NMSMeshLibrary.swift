@@ -7,6 +7,7 @@
 
 import Foundation
 import SceneKit
+import UIKit
 
 @MainActor
 final class NMSMeshLibrary {
@@ -20,54 +21,69 @@ final class NMSMeshLibrary {
         "^WALLLIGHTWHITE": "WallLightWhite"
     ]
 
+    private lazy var catalogLookup: [String: NMSPartDefinition] = {
+        Dictionary(
+            uniqueKeysWithValues: NMSPartCatalog.parts.map {
+                ($0.objectID, $0)
+            }
+        )
+    }()
+
     func createNode(for objectID: String) -> SCNNode {
-        
-        if objectID == "^ABAND_BARREL" {
 
-            guard let url = Bundle.main.url(
-                forResource: "ABAND_BARREL",
+        // Prefer converted USDZ assets.
+        if let part = catalogLookup[objectID],
+           let meshPath = part.meshPath {
+
+            let assetName = URL(
+                fileURLWithPath: meshPath
+            ).deletingPathExtension().lastPathComponent
+
+            if let url = Bundle.main.url(
+                forResource: assetName,
                 withExtension: "usdz"
-            ) else {
-                print("USDZ asset not found")
-                return createPlaceholder()
-            }
+            ) {
+                do {
+                    let scene = try SCNScene(
+                        url: url,
+                        options: nil
+                    )
 
-            do {
-                let scene = try SCNScene(
-                    url: url,
-                    options: nil
-                )
+                    print("Loaded USDZ: \(objectID)")
 
-                let meshNode = SCNNode()
+                    return cloneSceneContents(scene)
 
-                for child in scene.rootNode.childNodes {
-                    meshNode.addChildNode(child.clone())
+                } catch {
+                    print(
+                        "Failed to load USDZ for \(objectID): \(error)"
+                    )
                 }
-
-                print("Industrial Barrel USDZ loaded")
-                return meshNode
-
-            } catch {
-                print("USDZ loading failed: \(error)")
-                return createPlaceholder()
             }
         }
 
-        guard let assetName = meshRegistry[objectID] else {
-            return createPlaceholder()
+        // Preserve support for the original OBJ assets.
+        if let assetName = meshRegistry[objectID],
+           let scene = SCNScene(named: "\(assetName).obj") {
+
+            return cloneSceneContents(scene)
         }
 
-        guard let scene = SCNScene(named: "\(assetName).obj") else {
-            print("Mesh not found: \(assetName)")
-            return createPlaceholder()
-        }
+        print("No mesh available for \(objectID)")
+        return createPlaceholder()
+    }
+
+    private func cloneSceneContents(
+        _ scene: SCNScene
+    ) -> SCNNode {
 
         let meshNode = SCNNode()
 
         for child in scene.rootNode.childNodes {
+
             let instance = child.clone()
 
             instance.enumerateHierarchy { node, _ in
+
                 guard let geometry = node.geometry else {
                     return
                 }
