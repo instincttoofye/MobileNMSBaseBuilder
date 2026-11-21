@@ -1,0 +1,5005 @@
+{
+  "BaseVersion": 8,
+  "Objects": [
+    {
+      "ObjectID": "^ABAND_BARREL",
+      "Position": [
+        -122.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_BENCH",
+      "Position": [
+        -117.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_CASE",
+      "Position": [
+        -112.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_CRATE_L",
+      "Position": [
+        -107.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_CRATE_M",
+      "Position": [
+        -102.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_CRATE_XL",
+      "Position": [
+        -97.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ABAND_SHELF",
+      "Position": [
+        -92.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^AIRLCKCONNECTOR",
+      "Position": [
+        -87.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^ARCHIVE",
+      "Position": [
+        -82.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BARRENPLANT",
+      "Position": [
+        -77.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASECAPSULE",
+      "Position": [
+        -72.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_AQUARIUM",
+      "Position": [
+        -67.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BARNACLE",
+      "Position": [
+        -62.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BEAMSTONE",
+      "Position": [
+        -57.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BONEGARDEN",
+      "Position": [
+        -52.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBBLECLUS",
+      "Position": [
+        -47.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBPIPE",
+      "Position": [
+        -42.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBPIPE_L",
+      "Position": [
+        -37.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBPIPE_S",
+      "Position": [
+        -32.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBPIPE_T",
+      "Position": [
+        -27.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_BUBPIPE_X",
+      "Position": [
+        -22.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CAVE1",
+      "Position": [
+        -17.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CAVE2",
+      "Position": [
+        -12.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CAVE3",
+      "Position": [
+        -7.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CAVE4",
+      "Position": [
+        -2.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CAVE5",
+      "Position": [
+        2.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_COLDPLANT1",
+      "Position": [
+        7.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_COLDPLANT2",
+      "Position": [
+        12.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_COLDPLANT3",
+      "Position": [
+        17.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_CONTOURPOD",
+      "Position": [
+        22.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST01",
+      "Position": [
+        27.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST02",
+      "Position": [
+        32.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST03",
+      "Position": [
+        37.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST04",
+      "Position": [
+        42.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST05",
+      "Position": [
+        47.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST06",
+      "Position": [
+        52.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST07",
+      "Position": [
+        57.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST08",
+      "Position": [
+        62.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST09",
+      "Position": [
+        67.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST10",
+      "Position": [
+        72.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST11",
+      "Position": [
+        77.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST12",
+      "Position": [
+        82.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUST13",
+      "Position": [
+        87.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUSTPLANT1",
+      "Position": [
+        92.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUSTPLANT2",
+      "Position": [
+        97.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_DUSTPLANT3",
+      "Position": [
+        102.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_ENGINEORB",
+      "Position": [
+        107.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLAG",
+      "Position": [
+        112.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLORAL01",
+      "Position": [
+        117.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLORAL02",
+      "Position": [
+        122.5,
+        0.0,
+        -10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLORAL03",
+      "Position": [
+        -122.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLORAL04",
+      "Position": [
+        -117.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLOWER1",
+      "Position": [
+        -112.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLOWER2",
+      "Position": [
+        -107.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLOWER3",
+      "Position": [
+        -102.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FLYINGFERN",
+      "Position": [
+        -97.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_FOXGLOVE01",
+      "Position": [
+        -92.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS1",
+      "Position": [
+        -87.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS2",
+      "Position": [
+        -82.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS3",
+      "Position": [
+        -77.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS4",
+      "Position": [
+        -72.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS5",
+      "Position": [
+        -67.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS6",
+      "Position": [
+        -62.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_GRASS7",
+      "Position": [
+        -57.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT01",
+      "Position": [
+        -52.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT02",
+      "Position": [
+        -47.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT03",
+      "Position": [
+        -42.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT04",
+      "Position": [
+        -37.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT05",
+      "Position": [
+        -32.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT06",
+      "Position": [
+        -27.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT07",
+      "Position": [
+        -22.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOTPLANT08",
+      "Position": [
+        -17.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOUDINI1",
+      "Position": [
+        -12.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOUDINI2",
+      "Position": [
+        -7.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HOUDINI3",
+      "Position": [
+        -2.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_HYDROPOD",
+      "Position": [
+        2.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_INFEST1",
+      "Position": [
+        7.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_INFEST2",
+      "Position": [
+        12.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_INFEST3",
+      "Position": [
+        17.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_JUNGLE01",
+      "Position": [
+        22.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_JUNGLE02",
+      "Position": [
+        27.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_JUNGLE03",
+      "Position": [
+        32.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_JUNGLE04",
+      "Position": [
+        37.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_LAVA1",
+      "Position": [
+        42.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_LAVA2",
+      "Position": [
+        47.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_LAVA3",
+      "Position": [
+        52.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_MEDGEOMETR",
+      "Position": [
+        57.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_MEDPLANT01",
+      "Position": [
+        62.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_MEDPLANT02",
+      "Position": [
+        67.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_MEDPLANT03",
+      "Position": [
+        72.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_NEXUS1",
+      "Position": [
+        77.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_NEXUS2",
+      "Position": [
+        82.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_NEXUS3",
+      "Position": [
+        87.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_PEACOCK01",
+      "Position": [
+        92.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_PEACOCK02",
+      "Position": [
+        97.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_PEACOCK03",
+      "Position": [
+        102.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_RADPLANT01",
+      "Position": [
+        107.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_RADPLANT02",
+      "Position": [
+        112.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_RADPLANT03",
+      "Position": [
+        117.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_RADPLANT04",
+      "Position": [
+        122.5,
+        0.0,
+        -5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_ROBOTOY",
+      "Position": [
+        -122.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_ROCK01",
+      "Position": [
+        -117.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_ROCK02",
+      "Position": [
+        -112.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_ROCK03",
+      "Position": [
+        -107.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SHARD",
+      "Position": [
+        -102.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SHELLWHITE",
+      "Position": [
+        -97.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SPRIGBUSH",
+      "Position": [
+        -92.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_STARJOINT",
+      "Position": [
+        -87.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT1",
+      "Position": [
+        -82.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT2",
+      "Position": [
+        -77.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT3",
+      "Position": [
+        -72.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT4",
+      "Position": [
+        -67.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT5",
+      "Position": [
+        -62.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT6",
+      "Position": [
+        -57.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT7",
+      "Position": [
+        -52.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT8",
+      "Position": [
+        -47.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SUBZPLANT9",
+      "Position": [
+        -42.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SWAMP1",
+      "Position": [
+        -37.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SWAMP2",
+      "Position": [
+        -32.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_SWAMP3",
+      "Position": [
+        -27.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TERRARIUM",
+      "Position": [
+        -22.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOXPLANT01",
+      "Position": [
+        -17.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOXPLANT02",
+      "Position": [
+        -12.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOXPLANT03",
+      "Position": [
+        -7.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOXPLANT04",
+      "Position": [
+        -2.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOYCORE",
+      "Position": [
+        2.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOYCUBE",
+      "Position": [
+        7.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOYJELLY",
+      "Position": [
+        12.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TOYSPHERE",
+      "Position": [
+        17.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TREE01",
+      "Position": [
+        22.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TREE02",
+      "Position": [
+        27.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_TREE03",
+      "Position": [
+        32.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WEIRDCUBE",
+      "Position": [
+        37.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT1",
+      "Position": [
+        42.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT2",
+      "Position": [
+        47.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT3",
+      "Position": [
+        52.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT4",
+      "Position": [
+        57.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT5",
+      "Position": [
+        62.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT6",
+      "Position": [
+        67.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT7",
+      "Position": [
+        72.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BASE_WPLANT8",
+      "Position": [
+        77.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BILLBOARD",
+      "Position": [
+        82.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BIOROOM",
+      "Position": [
+        87.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLDWALLUNIT",
+      "Position": [
+        92.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUGHEAD1",
+      "Position": [
+        97.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUGHEAD2",
+      "Position": [
+        102.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUGHEAD3",
+      "Position": [
+        107.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUGHEAD4",
+      "Position": [
+        112.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUGHEAD5",
+      "Position": [
+        117.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUI_HAND",
+      "Position": [
+        122.5,
+        0.0,
+        0.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUI_HEAD",
+      "Position": [
+        -122.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_BUI_TENT",
+      "Position": [
+        -117.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_COVCRATE",
+      "Position": [
+        -112.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_COVSILOS",
+      "Position": [
+        -107.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_CRANE",
+      "Position": [
+        -102.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_CRYS_DRONE",
+      "Position": [
+        -97.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_CRYS_SENT0",
+      "Position": [
+        -92.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_CRYS_SENT1",
+      "Position": [
+        -87.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_DATASIGN",
+      "Position": [
+        -82.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_EXPD_BASE01",
+      "Position": [
+        -77.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_FIREPIT",
+      "Position": [
+        -72.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_FLYJAR",
+      "Position": [
+        -67.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_HOLOGEK",
+      "Position": [
+        -62.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_MAPTUBE",
+      "Position": [
+        -57.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_MINI_BIOFRI",
+      "Position": [
+        -52.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_PLANET_HOLO",
+      "Position": [
+        -47.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_01",
+      "Position": [
+        -42.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_02",
+      "Position": [
+        -37.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_03",
+      "Position": [
+        -32.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_04",
+      "Position": [
+        -27.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_05",
+      "Position": [
+        -22.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_06",
+      "Position": [
+        -17.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_07",
+      "Position": [
+        -12.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_08",
+      "Position": [
+        -7.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_09",
+      "Position": [
+        -2.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_10",
+      "Position": [
+        2.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_11",
+      "Position": [
+        7.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_RUINS_12",
+      "Position": [
+        12.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SHIPBREAK1",
+      "Position": [
+        17.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SHIPBREAK2",
+      "Position": [
+        22.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SHIPBREAK3",
+      "Position": [
+        27.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SHIPBREAK4",
+      "Position": [
+        32.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SHIPBREAK5",
+      "Position": [
+        37.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BLD_SKULL",
+      "Position": [
+        42.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BOXEDSCREEN",
+      "Position": [
+        47.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BP_ANALYSER",
+      "Position": [
+        52.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BRIDGECONNECTOR",
+      "Position": [
+        57.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDAMCRATE",
+      "Position": [
+        62.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDANTIMATTER",
+      "Position": [
+        67.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDBEACON",
+      "Position": [
+        72.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDBED",
+      "Position": [
+        77.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDCANRACK",
+      "Position": [
+        82.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDCHAIR",
+      "Position": [
+        87.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDCHAIR2",
+      "Position": [
+        92.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDCHAIR3",
+      "Position": [
+        97.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDCHAIR4",
+      "Position": [
+        102.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECAL",
+      "Position": [
+        107.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECAL2",
+      "Position": [
+        112.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNMS",
+      "Position": [
+        117.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM0",
+      "Position": [
+        122.5,
+        0.0,
+        5.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM1",
+      "Position": [
+        -122.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM2",
+      "Position": [
+        -117.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM3",
+      "Position": [
+        -112.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM4",
+      "Position": [
+        -107.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM5",
+      "Position": [
+        -102.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM6",
+      "Position": [
+        -97.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM7",
+      "Position": [
+        -92.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM8",
+      "Position": [
+        -87.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALNUM9",
+      "Position": [
+        -82.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALSIMP1",
+      "Position": [
+        -77.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALSIMP2",
+      "Position": [
+        -72.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALSIMP3",
+      "Position": [
+        -67.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALSIMP4",
+      "Position": [
+        -62.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALVIS1",
+      "Position": [
+        -57.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALVIS2",
+      "Position": [
+        -52.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALVIS3",
+      "Position": [
+        -47.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALVIS4",
+      "Position": [
+        -42.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDECALVIS5",
+      "Position": [
+        -37.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDOOR",
+      "Position": [
+        -32.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDDOOR_WATER",
+      "Position": [
+        -27.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDFLATPANEL",
+      "Position": [
+        -22.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDGASHARVEST",
+      "Position": [
+        -17.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDHARVESTER",
+      "Position": [
+        -12.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDHCABINET",
+      "Position": [
+        -7.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLABLAMP",
+      "Position": [
+        -2.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLADDER",
+      "Position": [
+        2.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLANDINGPAD",
+      "Position": [
+        7.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLCRATE",
+      "Position": [
+        12.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLIGHT",
+      "Position": [
+        17.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLIGHT2",
+      "Position": [
+        22.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLIGHT3",
+      "Position": [
+        27.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLIGHTTABLE",
+      "Position": [
+        32.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDLOCKER",
+      "Position": [
+        37.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDPAVING",
+      "Position": [
+        42.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDPAVINGTALL",
+      "Position": [
+        47.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDPAVING_BIG",
+      "Position": [
+        52.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDRAMP",
+      "Position": [
+        57.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSAVE",
+      "Position": [
+        62.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSIDEPANEL",
+      "Position": [
+        67.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSIGNAL",
+      "Position": [
+        72.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSIMPLEDESK",
+      "Position": [
+        77.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSOFA",
+      "Position": [
+        82.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSOFA2",
+      "Position": [
+        87.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDSOFA2L",
+      "Position": [
+        92.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDTABLE",
+      "Position": [
+        97.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDTABLE2",
+      "Position": [
+        102.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDTABLE3",
+      "Position": [
+        107.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDTERMINAL",
+      "Position": [
+        112.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDWINDOW",
+      "Position": [
+        117.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    },
+    {
+      "ObjectID": "^BUILDWORKTOP",
+      "Position": [
+        122.5,
+        0.0,
+        10.0
+      ],
+      "Up": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "At": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Timestamp": 0,
+      "UserData": 0
+    }
+  ]
+}

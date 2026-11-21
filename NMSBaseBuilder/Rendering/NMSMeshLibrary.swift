@@ -31,10 +31,16 @@ final class NMSMeshLibrary {
 
     func createNode(for objectID: String) -> SCNNode {
         
-        print("createNode called with: [\(objectID)]")
+        let startTime = CFAbsoluteTimeGetCurrent()
+
+        defer {
+            let elapsed = CFAbsoluteTimeGetCurrent() - startTime
+
+            print(
+                "MESH PROFILE: \(objectID) — \(String(format: "%.2f", elapsed * 1000)) ms"
+            )
+        }
         
-        print("Resolving mesh for: \(objectID)")
-        print("Catalog entry exists: \(catalogLookup[objectID] != nil)")
 
         if let part = catalogLookup[objectID],
            let meshPath = part.meshPath {
@@ -81,11 +87,6 @@ final class NMSMeshLibrary {
                         url: url,
                         options: nil
                     )
-                    
-                    if objectID == "^C_WALL_Q_H" {
-                        print("=== USDZ NODE HIERARCHY ===")
-                        inspectNode(scene.rootNode)
-                    }
 
                     print("Loaded USDZ from: \(url.path)")
 
