@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA1E19B230B1169600BDF44E /* legacy_structures in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA1E19B130B1169600BDF44E /* legacy_structures */; };
+		EA1E19B430B11FC800BDF44E /* ConvertedModels in CopyFiles */ = {isa = PBXBuildFile; fileRef = EA1E19B330B11FC800BDF44E /* ConvertedModels */; };
 		EA2D85923095C9DF00DABF34 /* BaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA2D85913095C9DF00DABF34 /* BaseCore */; };
 /* End PBXBuildFile section */
 
@@ -32,18 +32,17 @@
 		EA1E19AE30B1165200BDF44E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ConvertedModels;
+			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				EA1E19B230B1169600BDF44E /* legacy_structures in CopyFiles */,
+				EA1E19B430B11FC800BDF44E /* ConvertedModels in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EA1E19AF30B1167B00BDF44E /* ConvertedModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConvertedModels; sourceTree = "<group>"; };
-		EA1E19B130B1169600BDF44E /* legacy_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = legacy_structures; sourceTree = "<group>"; };
+		EA1E19B330B11FC800BDF44E /* ConvertedModels */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ConvertedModels; path = "../nms-base-builder/ConvertedModels"; sourceTree = "<group>"; };
 		EA2D85633095C87E00DABF34 /* NMSBaseBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NMSBaseBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2D85733095C88000DABF34 /* NMSBaseBuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NMSBaseBuilderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2D857D3095C88000DABF34 /* NMSBaseBuilderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NMSBaseBuilderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,8 +95,7 @@
 		EA2D855A3095C87E00DABF34 = {
 			isa = PBXGroup;
 			children = (
-				EA1E19B130B1169600BDF44E /* legacy_structures */,
-				EA1E19AF30B1167B00BDF44E /* ConvertedModels */,
+				EA1E19B330B11FC800BDF44E /* ConvertedModels */,
 				EA2D85653095C87E00DABF34 /* NMSBaseBuilder */,
 				EA2D85763095C88000DABF34 /* NMSBaseBuilderTests */,
 				EA2D85803095C88000DABF34 /* NMSBaseBuilderUITests */,

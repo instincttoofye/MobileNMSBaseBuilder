@@ -30,8 +30,12 @@ final class NMSMeshLibrary {
     }()
 
     func createNode(for objectID: String) -> SCNNode {
+        
+        print("Resolving mesh for: \(objectID)")
+        print("Catalog entry exists: \(catalogLookup[objectID] != nil)")
 
-        if let part = catalogLookup[objectID],
+        if meshRegistry[objectID] == nil,
+           let part = catalogLookup[objectID],
            let meshPath = part.meshPath {
 
             let modelURL = URL(fileURLWithPath: meshPath)
@@ -42,6 +46,11 @@ final class NMSMeshLibrary {
 
             let category = part.modelCategory
                 ?? modelURL.deletingLastPathComponent().lastPathComponent
+            
+            print("Looking for: \(objectID)")
+            print("Asset name: \(assetName)")
+            print("Category: \(category)")
+            print("Mesh path: \(meshPath)")
 
             // Preferred: preserve the original model directory.
             let directoryURL = Bundle.main.url(
@@ -55,6 +64,14 @@ final class NMSMeshLibrary {
                 forResource: assetName,
                 withExtension: "usdz"
             )
+            
+            if directoryURL == nil {
+                print("Directory lookup FAILED: \(category)/\(assetName).usdz")
+            }
+
+            if flatURL == nil {
+                print("Flat lookup FAILED: \(assetName).usdz")
+            }
 
             if let url = directoryURL ?? flatURL {
 
