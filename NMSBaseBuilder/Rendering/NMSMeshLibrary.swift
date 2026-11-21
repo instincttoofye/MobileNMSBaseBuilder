@@ -31,37 +31,52 @@ final class NMSMeshLibrary {
 
     func createNode(for objectID: String) -> SCNNode {
 
-        // Prefer converted USDZ assets.
         if let part = catalogLookup[objectID],
            let meshPath = part.meshPath {
 
-            let assetName = URL(
-                fileURLWithPath: meshPath
-            ).deletingPathExtension().lastPathComponent
+            let modelURL = URL(fileURLWithPath: meshPath)
 
-            if let url = Bundle.main.url(
+            let assetName = modelURL
+                .deletingPathExtension()
+                .lastPathComponent
+
+            let category = part.modelCategory
+                ?? modelURL.deletingLastPathComponent().lastPathComponent
+
+            // Preferred: preserve the original model directory.
+            let directoryURL = Bundle.main.url(
+                forResource: assetName,
+                withExtension: "usdz",
+                subdirectory: "ConvertedModels/\(category)"
+            )
+
+            // Compatibility with our existing flat USDZ assets.
+            let flatURL = Bundle.main.url(
                 forResource: assetName,
                 withExtension: "usdz"
-            ) {
+            )
+
+            if let url = directoryURL ?? flatURL {
+
                 do {
                     let scene = try SCNScene(
                         url: url,
                         options: nil
                     )
 
-                    print("Loaded USDZ: \(objectID)")
+                    print("Loaded USDZ from: \(url.path)")
 
                     return cloneSceneContents(scene)
 
                 } catch {
                     print(
-                        "Failed to load USDZ for \(objectID): \(error)"
+                        "USDZ loading failed for \(objectID): \(error)"
                     )
                 }
             }
         }
 
-        // Preserve support for the original OBJ assets.
+        // Original OBJ compatibility.
         if let assetName = meshRegistry[objectID],
            let scene = SCNScene(named: "\(assetName).obj") {
 
