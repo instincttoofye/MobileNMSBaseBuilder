@@ -20,6 +20,7 @@ struct BaseSceneView: UIViewRepresentable {
         controller.sceneView = view
 
         view.scene = controller.scene
+        view.delegate = context.coordinator
         view.allowsCameraControl = true
         view.backgroundColor = .black
 
@@ -51,7 +52,7 @@ struct BaseSceneView: UIViewRepresentable {
     }
 
     @MainActor
-    final class Coordinator: NSObject, UIGestureRecognizerDelegate {
+    final class Coordinator: NSObject, UIGestureRecognizerDelegate, SCNSceneRendererDelegate {
 
         let controller: BaseSceneController
         private var activeGizmoAxis: String?
@@ -60,6 +61,19 @@ struct BaseSceneView: UIViewRepresentable {
         init(controller: BaseSceneController) {
             self.controller = controller
         }
+        
+        
+        private var lastRenderTime: TimeInterval?
+
+        
+        nonisolated func renderer(
+            _ renderer: any SCNSceneRenderer,
+            didRenderScene scene: SCNScene,
+            atTime time: TimeInterval
+        ) {
+            SceneRenderProfiler.shared.markFrameRendered()
+        }
+
         
         private func worldAxis(_ axis: String) -> SIMD3<Float>? {
 

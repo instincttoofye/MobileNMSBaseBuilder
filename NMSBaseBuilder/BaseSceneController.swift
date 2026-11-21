@@ -53,6 +53,7 @@ final class BaseSceneController {
     weak var sceneView: SCNView?
 
     init() {
+        print("CONTROLLER INIT: \(ObjectIdentifier(self))")
         environment.setup(in: scene)
         loadLampPost()
     }
@@ -199,16 +200,24 @@ final class BaseSceneController {
         renderer.clearNodes()
     }
     
-    func loadProject(_ newProject: BaseProject, resetHistory: Bool = true) throws {
+
+    func loadProject(
+        _ newProject: BaseProject,
+        resetHistory: Bool = true
+    ) throws {
+        
+        print("LOAD PROJECT: controller=\(ObjectIdentifier(self)), parts=\(newProject.parts.count)")
+
+        let start = CFAbsoluteTimeGetCurrent()
 
         var newNodes: [(index: Int, node: SCNNode)] = []
 
         for (index, part) in newProject.parts.enumerated() {
-
             let node = try renderer.createNode(for: part)
-
             newNodes.append((index: index, node: node))
         }
+
+        let creationEnd = CFAbsoluteTimeGetCurrent()
 
         // Only replace the existing scene after every part succeeds.
         clearProjectNodes()
@@ -216,18 +225,34 @@ final class BaseSceneController {
         projectEditor.loadProject(newProject)
 
         for entry in newNodes {
-
             renderer.register(entry.node, at: entry.index)
-
             scene.rootNode.addChildNode(entry.node)
         }
 
+        let attachmentEnd = CFAbsoluteTimeGetCurrent()
+
         print("Loaded \(newProject.parts.count) NMS parts")
-        
+
         if resetHistory {
             historyManager.reset()
         }
+
+        let end = CFAbsoluteTimeGetCurrent()
+
+        print("""
+        === PROJECT LOAD PROFILE ===
+        Parts: \(newProject.parts.count)
+        Node creation: \(String(format: "%.3f", creationEnd - start)) s
+        Scene replacement: \(String(format: "%.3f", attachmentEnd - creationEnd)) s
+        Total loadProject: \(String(format: "%.3f", end - start)) s
+        ============================
+        """)
+        
+        SceneRenderProfiler.shared.markImportFinished(
+            partCount: newProject.parts.count
+        )
     }
+
     
     func updatePartRotation(
         at index: Int,
