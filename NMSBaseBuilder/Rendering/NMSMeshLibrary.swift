@@ -31,11 +31,12 @@ final class NMSMeshLibrary {
 
     func createNode(for objectID: String) -> SCNNode {
         
+        print("createNode called with: [\(objectID)]")
+        
         print("Resolving mesh for: \(objectID)")
         print("Catalog entry exists: \(catalogLookup[objectID] != nil)")
 
-        if meshRegistry[objectID] == nil,
-           let part = catalogLookup[objectID],
+        if let part = catalogLookup[objectID],
            let meshPath = part.meshPath {
 
             let modelURL = URL(fileURLWithPath: meshPath)
@@ -80,10 +81,20 @@ final class NMSMeshLibrary {
                         url: url,
                         options: nil
                     )
+                    
+                    if objectID == "^C_WALL_Q_H" {
+                        print("=== USDZ NODE HIERARCHY ===")
+                        inspectNode(scene.rootNode)
+                    }
 
                     print("Loaded USDZ from: \(url.path)")
 
-                    return cloneSceneContents(scene)
+                    let meshNode = cloneSceneContents(scene)
+
+                    // Correct USDZ orientation for SceneKit.
+                    meshNode.eulerAngles.x = -.pi / 2
+
+                    return meshNode
 
                 } catch {
                     print(
@@ -91,12 +102,35 @@ final class NMSMeshLibrary {
                     )
                 }
             }
+            
+            let expectedURL = Bundle.main.bundleURL
+                .appendingPathComponent("ConvertedModels")
+                .appendingPathComponent(category)
+                .appendingPathComponent("\(assetName).usdz")
+
+            print("Expected path: \(expectedURL.path)")
+            print(
+                "File exists:",
+                FileManager.default.fileExists(atPath: expectedURL.path)
+            )
         }
 
         // Original OBJ compatibility.
         if let assetName = meshRegistry[objectID],
            let scene = SCNScene(named: "\(assetName).obj") {
-
+            /*if objectID == "^C_WALL_Q_H" {
+             print("=== ORIGINAL OBJ NODE HIERARCHY ===")
+             inspectNode(scene.rootNode)
+             }*/
+            
+          /*  let meshNode = cloneSceneContents(scene)
+            
+            if objectID == "^C_WALL_Q_H" ||
+                objectID == "^CYLINDERSHAPE" {
+                meshNode.eulerAngles.x = -.pi / 2
+            }
+            
+            return meshNode*/
             return cloneSceneContents(scene)
         }
 
@@ -133,6 +167,23 @@ final class NMSMeshLibrary {
         }
 
         return meshNode
+    }
+    
+    private func inspectNode(
+        _ node: SCNNode,
+        depth: Int = 0
+    ) {
+        let indent = String(repeating: "  ", count: depth)
+
+        print("\(indent)Node: \(node.name ?? "unnamed")")
+        print("\(indent)Position: \(node.position)")
+        print("\(indent)Rotation: \(node.eulerAngles)")
+        print("\(indent)Scale: \(node.scale)")
+        print("\(indent)Bounding box: \(node.boundingBox)")
+
+        for child in node.childNodes {
+            inspectNode(child, depth: depth + 1)
+        }
     }
 
     private func createPlaceholder() -> SCNNode {
