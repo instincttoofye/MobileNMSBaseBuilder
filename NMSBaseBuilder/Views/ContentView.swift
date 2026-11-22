@@ -49,26 +49,30 @@ struct ContentView: View {
             HStack(spacing: 16) {
 
                 Button {
-                    do {
-                        try controller.undo()
-                    } catch {
-                        print("Undo failed: \(error)")
+                    Task { @MainActor in
+                        do {
+                            try await controller.undo()
+                        } catch {
+                            print("Undo failed: \(error)")
+                        }
                     }
                 } label: {
                     Label("Undo", systemImage: "arrow.uturn.backward")
                 }
-                .disabled(!controller.canUndo)
+                .disabled(!controller.canUndo || controller.isLoading)
 
                 Button {
-                    do {
-                        try controller.redo()
-                    } catch {
-                        print("Redo failed: \(error)")
+                    Task { @MainActor in
+                        do {
+                            try await controller.redo()
+                        } catch {
+                            print("Redo failed: \(error)")
+                        }
                     }
                 } label: {
                     Label("Redo", systemImage: "arrow.uturn.forward")
                 }
-                .disabled(!controller.canRedo)
+                .disabled(!controller.canRedo || controller.isLoading)
             }
 
             BaseSceneView(controller: controller)
@@ -205,7 +209,14 @@ struct ContentView: View {
                         from: data
                     )
 
-                    try controller.loadProject(project)
+                    Task { @MainActor in
+                        do {
+                            try await controller.loadProject(project)
+                            print("Imported project")
+                        } catch {
+                            print("Import failed: \(error)")
+                        }
+                    }
 
                     print("Imported: \(url.lastPathComponent)")
 

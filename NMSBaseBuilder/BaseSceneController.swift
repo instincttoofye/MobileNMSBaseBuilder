@@ -16,6 +16,8 @@ final class BaseSceneController {
 
     let scene = SCNScene()
     
+    private(set) var isLoading: Bool = false
+    
     private let projectEditor = BaseProjectEditor()
     private let gizmo = BaseTranslationGizmo()
 
@@ -58,6 +60,33 @@ final class BaseSceneController {
         loadLampPost()
     }
     
+    private func loadNodesInBatches(
+        for project: BaseProject
+    ) async throws {
+        let batchSize = 50
+
+        for startIndex in stride(
+            from: 0,
+            to: project.parts.count,
+            by: batchSize
+        ) {
+            let endIndex = min(
+                startIndex + batchSize,
+                project.parts.count
+            )
+
+            for index in startIndex..<endIndex {
+                try renderer.addNode(
+                    for: project.parts[index],
+                    at: index,
+                    to: scene
+                )
+            }
+
+            await Task.yield()
+        }
+    }
+    
     private func loadLampPost() {
 
         guard let url = Bundle.main.url(
@@ -76,7 +105,13 @@ final class BaseSceneController {
                 from: data
             )
 
-            try loadProject(project)
+            Task { @MainActor in
+                do {
+                    try await loadProject(project)
+                } catch {
+                    print("Failed to load LampPostA: \(error)")
+                }
+            }
 
         } catch {
             print("Failed to load LampPostA: \(error)")
@@ -204,53 +239,24 @@ final class BaseSceneController {
     func loadProject(
         _ newProject: BaseProject,
         resetHistory: Bool = true
-    ) throws {
-        
-        print("LOAD PROJECT: controller=\(ObjectIdentifier(self)), parts=\(newProject.parts.count)")
-
-        let start = CFAbsoluteTimeGetCurrent()
-
-        var newNodes: [(index: Int, node: SCNNode)] = []
-
-        for (index, part) in newProject.parts.enumerated() {
-            let node = try renderer.createNode(for: part)
-            newNodes.append((index: index, node: node))
+    ) async throws {
+        guard !isLoading else {
+            throw ProjectLoadError.alreadyLoading
         }
 
-        let creationEnd = CFAbsoluteTimeGetCurrent()
+        isLoading = true
+        defer { isLoading = false }
 
-        // Only replace the existing scene after every part succeeds.
         clearProjectNodes()
-
         projectEditor.loadProject(newProject)
-
-        for entry in newNodes {
-            renderer.register(entry.node, at: entry.index)
-            scene.rootNode.addChildNode(entry.node)
-        }
-
-        let attachmentEnd = CFAbsoluteTimeGetCurrent()
-
-        print("Loaded \(newProject.parts.count) NMS parts")
 
         if resetHistory {
             historyManager.reset()
         }
 
-        let end = CFAbsoluteTimeGetCurrent()
+        try await loadNodesInBatches(for: newProject)
 
-        print("""
-        === PROJECT LOAD PROFILE ===
-        Parts: \(newProject.parts.count)
-        Node creation: \(String(format: "%.3f", creationEnd - start)) s
-        Scene replacement: \(String(format: "%.3f", attachmentEnd - creationEnd)) s
-        Total loadProject: \(String(format: "%.3f", end - start)) s
-        ============================
-        """)
-        
-        SceneRenderProfiler.shared.markImportFinished(
-            partCount: newProject.parts.count
-        )
+        print("Loaded \(newProject.parts.count) NMS parts")
     }
 
     
@@ -360,24 +366,24 @@ final class BaseSceneController {
         historyManager.record(snapshot)
     }
     
-    func undo() throws {
+    func undo() async throws {
         guard let previousProject = historyManager.previousProject(),
               let currentProject = project else {
             return
         }
 
-        try loadProject(previousProject, resetHistory: false)
+        try await loadProject(previousProject, resetHistory: false)
 
         historyManager.commitUndo(currentProject: currentProject)
     }
     
-    func redo() throws {
+    func redo() async throws {
         guard let nextProject = historyManager.nextProject(),
               let currentProject = project else {
             return
         }
 
-        try loadProject(nextProject, resetHistory: false)
+        try await loadProject(nextProject, resetHistory: false)
 
         historyManager.commitRedo(currentProject: currentProject)
     }
