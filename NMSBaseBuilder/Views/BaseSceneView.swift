@@ -44,7 +44,12 @@ struct BaseSceneView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: SCNView, context: Context) {
-        // Nothing to update yet.
+        print(
+            "ACTIVE CONTROLLER:",
+            ObjectIdentifier(controller),
+            "SCENE:",
+            ObjectIdentifier(uiView.scene!)
+        )
     }
 
     func makeCoordinator() -> Coordinator {

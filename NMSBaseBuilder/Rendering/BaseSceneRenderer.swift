@@ -99,4 +99,16 @@ final class BaseSceneRenderer {
         partNodes = updatedPartNodes
         nodePartIndices = updatedNodePartIndices
     }
+    
+    func addNode(
+        for part: BasePart,
+        at index: Int,
+        to scene: SCNScene
+    ) throws {
+        let node = try createNode(for: part)
+
+        register(node, at: index)
+
+        scene.rootNode.addChildNode(node)
+    }
 }
